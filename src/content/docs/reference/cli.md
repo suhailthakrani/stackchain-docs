@@ -12,7 +12,7 @@ No command ⇒ `init`.
 ## Global options
 
 | Flag | Short | Description |
-| --- | --- | --- |
+| --- | --- |
 | `--help` | `-h` | Usage |
 | `--overwrite` | `-f` | Overwrite files |
 | `--dry-run` | | No writes |
@@ -23,14 +23,16 @@ No command ⇒ `init`.
 ## Commands
 
 | Command | Args | Notes |
-| --- | --- | --- |
+| --- | --- |
 | `help` | `[command]` | |
 | `init` | | Full scaffold |
 | `feature` | `<name>` or `--name` | Vertical slice |
 | `add` | `<name>` | Alias of feature |
+| `remove` | `<name>` or `--name` | Delete feature + rewire |
+| `rename` | `<from> <to>` or `--from` / `--to` | Rename feature + rewire |
 | `sync` | | Region merge |
 | `upgrade` | | Deps + sync + lock + gate |
-| `migrate` | stack flags | Evolve stack |
+| `migrate` | stack flags | Evolve stack (shell + presentation + tests) |
 | `doctor` | | Gate only |
 | `presets` | | List IDs |
 | `make` | `<type> <name>` | `feature\|page\|widget\|service` |
@@ -40,6 +42,10 @@ No command ⇒ `init`.
 ### migrate flags
 
 `--architecture` `--state` `--routing` `--di` `--network` `--preset` `--keep-old` `--dry-run` `--skip-analyze`
+
+### rename flags
+
+`--from` `--to` `--dry-run` `--skip-analyze`
 
 ### make flags
 

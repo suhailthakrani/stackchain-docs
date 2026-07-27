@@ -14,7 +14,7 @@ dart run stackchain <command>
 | Field | Value |
 | --- | --- |
 | Package | `stackchain` |
-| Version | `1.1.2` |
+| Version | `1.1.3` |
 | SDK | `^3.5.0` |
 | License | MIT |
 | Repository | https://github.com/suhailthakrani/stackchain |
@@ -37,6 +37,7 @@ dart run stackchain <command>
 | YAML parser | `lib/src/parser/yaml_parser.dart` |
 | Project generator | `lib/src/generators/project_generator.dart` |
 | Vertical slice | `lib/src/slices/vertical_slice.dart` |
+| Feature remove / rename | `lib/src/slices/feature_remover.dart`, `feature_renamer.dart` |
 | Architecture registry | `lib/src/architecture/architecture_registry.dart` |
 | Presets | `lib/src/presets/preset_registry.dart` |
 | Sync / merge | `lib/src/sync/project_sync.dart`, `lib/src/merge/region_merger.dart` |

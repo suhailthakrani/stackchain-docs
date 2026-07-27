@@ -60,7 +60,12 @@ stackchain:
 ## Evolve mid-project
 
 ```bash
-dart run stackchain migrate --state cubit --dry-run
+dart run stackchain feature notifications
+dart run stackchain rename profile account
+dart run stackchain remove notifications
+
+dart run stackchain migrate --state bloc --dry-run
+dart run stackchain migrate --state bloc
 dart run stackchain migrate --preset production_riverpod
 dart run stackchain upgrade
 ```

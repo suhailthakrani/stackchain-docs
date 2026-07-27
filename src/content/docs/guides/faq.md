@@ -27,6 +27,21 @@ Not as a `storage` enum value today. Use Hive / prefs / secure storage. Drift/Is
 
 `make feature` and `feature` use the vertical slice generator. The GetX-oriented brick under `bricks/feature/` is not that path.
 
+## Can I rename or remove a feature?
+
+Yes.
+
+```bash
+dart run stackchain rename profile account
+dart run stackchain remove auth
+```
+
+Both update `stackchain.yaml`, files/tests, and router/DI. You cannot remove the last remaining feature.
+
+## Does migrate rewrite bootstrap?
+
+Yes. State changes like Riverpod → Bloc refresh `bootstrap.dart` (drops `ProviderScope` / Riverpod imports), plus presentation, DI, and feature tests.
+
 ## Which version is documented?
 
-Documentation targets **stackchain 1.1.2**.
+Documentation targets **stackchain 1.1.3**.

@@ -19,6 +19,8 @@ With **no subcommand**, the CLI behaves like `init`.
 | `init` | Full scaffold from `stackchain.yaml` |
 | `feature <name>` | Vertical slice (files + router + DI + tests + gate) |
 | `add <name>` | Alias for `feature` |
+| `remove <name>` | Remove a feature (files + yaml + router/DI) |
+| `rename <from> <to>` | Rename a feature end-to-end |
 | `sync` | Smart-merge managed regions only |
 | `upgrade` | Refresh deps, sync, lockfile, quality gate |
 | `migrate` | Evolve stack (architecture / state / routing / DI / network / preset) |
@@ -31,7 +33,7 @@ With **no subcommand**, the CLI behaves like `init`.
 ## Global options
 
 | Flag | Short | Description |
-| --- | --- | --- |
+| --- | --- |
 | `--help` | `-h` | Show usage |
 | `--overwrite` | `-f` | Overwrite existing generated files |
 | `--dry-run` | | Print actions, no writes |
@@ -45,6 +47,8 @@ With **no subcommand**, the CLI behaves like `init`.
 dart run stackchain help
 dart run stackchain help migrate
 dart run stackchain help feature
+dart run stackchain help rename
+dart run stackchain help remove
 ```
 
 ## Project path

@@ -9,14 +9,16 @@ description: Vertical feature generation — files, recipes, router/DI sync, tes
 dart run stackchain feature auth
 dart run stackchain add settings
 dart run stackchain make feature profile   # same vertical slice path
+dart run stackchain rename profile account
+dart run stackchain remove auth
 ```
 
-## Pipeline
+## Pipeline (`feature` / `add`)
 
 1. Validate snake_case name
 2. Append to `features` in YAML if new
 3. Generate architecture-specific files + recipe extras
-4. Sync router + DI regions
+4. Sync router + DI regions (full feature DI graph for GetIt)
 5. Update `.stackchain/lock.yaml`
 6. Quality gate
 
@@ -39,3 +41,9 @@ lib/features/auth/
   presentation/pages/
   presentation/widgets/
 ```
+
+## Related
+
+- [feature CLI](/stackchain-docs/cli/feature/)
+- [remove](/stackchain-docs/cli/remove/)
+- [rename](/stackchain-docs/cli/rename/)

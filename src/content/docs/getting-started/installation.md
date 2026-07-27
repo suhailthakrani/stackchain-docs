@@ -33,7 +33,7 @@ flutter pub add --dev stackchain
 
 ```yaml
 dev_dependencies:
-  stackchain: ^1.1.2
+  stackchain: ^1.1.3
 ```
 
 Then:
@@ -50,7 +50,7 @@ flutter pub get
 dart run stackchain help
 ```
 
-You should see the command list (`init`, `feature`, `sync`, `upgrade`, `migrate`, `doctor`, `presets`, `make`, `list`, `new`).
+You should see the command list (`init`, `feature`, `add`, `remove`, `rename`, `sync`, `upgrade`, `migrate`, `doctor`, `presets`, `make`, `list`, `new`).
 
 ### Executable aliases
 

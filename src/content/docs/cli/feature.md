@@ -7,6 +7,11 @@ description: Generate a vertical feature slice and wire router, DI, tests, lockf
 
 `feature` (alias `add`) creates a vertical slice for a named feature: folders/files for your architecture + state management, then syncs router and DI managed regions, updates the lockfile, and runs the quality gate.
 
+Also see:
+
+- [remove](/stackchain-docs/cli/remove/) — tear a feature down
+- [rename](/stackchain-docs/cli/rename/) — rename a feature end-to-end
+
 ## Usage
 
 ```bash
@@ -33,6 +38,8 @@ Feature names must be snake_case: `^[a-z][a-z0-9_]*$`.
 3. Runs `ProjectSync` (router + DI regions)
 4. Updates `.stackchain/lock.yaml`
 5. Runs quality gate
+
+For layered + `get_it`, DI registers the full feature graph: remote datasource, repository, use case, and state class (`Bloc` / `Cubit` / `Controller`).
 
 ## Named recipes
 

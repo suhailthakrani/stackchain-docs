@@ -7,7 +7,7 @@ stackchain uses two generation systems:
 
 | System | Used by | Source |
 | --- | --- | --- |
-| **In-code templates** | `init`, feature slices, sync/migrate presentation | `AppTemplates`, `RouterTemplates`, `CoreTemplates`, `FeatureTemplates`, `ModuleTemplates` |
+| **In-code templates** | `init`, feature slices, remove/rename, sync/migrate shell | `AppTemplates`, `RouterTemplates`, `CoreTemplates`, `FeatureTemplates`, `ModuleTemplates` |
 | **Bricks (`.tpl`)** | `make page|widget|service`, `new`, `list` | Package `bricks/` + `.stackchain/bricks/` + project `bricks/` |
 
 ## Overwrite rules

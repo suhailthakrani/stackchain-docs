@@ -54,10 +54,12 @@ Get from an empty Flutter app to a runnable scaffold with flavors, DI, routing, 
    - Writes `.stackchain/lock.yaml`
    - Runs the quality gate
 
-5. **Add a vertical slice**
+5. **Add / rename / remove slices**
 
    ```bash
    dart run stackchain feature auth
+   dart run stackchain rename profile account
+   dart run stackchain remove notifications
    ```
 
    Named recipes like `auth`, `settings`, and `profile` generate richer extras (forms, tests). Generic names get a solid baseline + smoke tests.
@@ -101,6 +103,7 @@ dart run stackchain make page onboarding
 dart run stackchain make widget app_chip
 dart run stackchain make service analytics
 dart run stackchain upgrade
+dart run stackchain migrate --state bloc --dry-run
 ```
 
 Configure every field in [Configuration](/stackchain-docs/getting-started/configuration/).

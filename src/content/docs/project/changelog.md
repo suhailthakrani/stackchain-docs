@@ -5,9 +5,17 @@ description: Release history for the stackchain Flutter CLI package.
 
 Documentation tracks the published package. Source of truth: package `CHANGELOG.md`.
 
+## 1.1.3
+
+- Harden `migrate` so any stack change refreshes bootstrap/app/router/DI and feature tests
+- Add `rename <from> <to>` for end-to-end feature rename
+- Add `remove <name>` — delete feature files/tests, drop yaml entry, re-sync router/DI
+- GetIt DI registers datasource + repository + use case + state per feature
+
 ## 1.1.2
 
 - Official documentation site published
+- Homepage / docs URLs pointed at this site
 
 ## 1.1.1
 
@@ -24,7 +32,3 @@ Documentation tracks the published package. Source of truth: package `CHANGELOG.
 
 - Initial generators for architectures, state, routing, DI, network, storage
 - Feature scaffolding and core app templates
-
-## Unreleased docs site
-
-- Astro Starlight documentation website with full command and config coverage

@@ -20,8 +20,8 @@ Managed regions:
 
 | ID | Purpose |
 | --- | --- |
-| `core` | Core registrations |
-| `features` | Per-feature registrations |
+| `core` | Core registrations (session, network, storage, …) |
+| `features` | Per-feature datasource / repository / use case / state |
 
 ```dart
 // <stackchain:core>
@@ -32,3 +32,5 @@ Managed regions:
 // ...
 // </stackchain:features>
 ```
+
+`feature`, `remove`, `rename`, `sync`, and `migrate` all keep these regions aligned with `stackchain.yaml`.

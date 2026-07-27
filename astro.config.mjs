@@ -15,7 +15,7 @@ export default defineConfig({
 		starlight({
 			title: 'stackchain',
 			description:
-				'Config-driven Flutter scaffolding that evolves with your app — presets, vertical slices, smart merges, and a quality gate on every generate.',
+				'Flutter scaffolding from a simple config. Use presets, add full features, keep router and DI in sync, migrate safely, and run quality checks on every generate.',
 			favicon: '/favicon.svg',
 			logo: {
 				src: './src/assets/logo-mark.svg',
@@ -78,6 +78,8 @@ export default defineConfig({
 						{ label: 'Commands overview', slug: 'cli/overview' },
 						{ label: 'init', slug: 'cli/init' },
 						{ label: 'feature / add', slug: 'cli/feature' },
+						{ label: 'remove', slug: 'cli/remove' },
+						{ label: 'rename', slug: 'cli/rename' },
 						{ label: 'sync', slug: 'cli/sync' },
 						{ label: 'upgrade', slug: 'cli/upgrade' },
 						{ label: 'migrate', slug: 'cli/migrate' },

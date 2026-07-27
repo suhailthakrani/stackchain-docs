@@ -7,14 +7,14 @@ import { Aside } from '@astrojs/starlight/components';
 
 **stackchain** is a config-driven Flutter scaffolding CLI. You keep it as a **dev dependency**, declare your preferred stack in `stackchain.yaml`, and generate a production-shaped app that can keep evolving.
 
-Current package version: **1.1.2** · License: **MIT** · [pub.dev/packages/stackchain](https://pub.dev/packages/stackchain)
+Current package version: **1.1.3** · License: **MIT** · [pub.dev/packages/stackchain](https://pub.dev/packages/stackchain)
 
 ## What is stackchain?
 
 Most Flutter generators are one-shot: they dump folders once, then you are on your own. stackchain is different:
 
 1. **Config-driven** — architecture, state, routing, DI, network, and storage live in YAML.
-2. **Lifecycle-aware** — `init`, `feature`, `sync`, `upgrade`, and `migrate` cover the full project life.
+2. **Lifecycle-aware** — `init`, `feature`, `rename`, `remove`, `sync`, `upgrade`, and `migrate` cover the full project life.
 3. **Merge-safe** — managed regions use `// <stackchain:id>` markers so hand-written code outside them is preserved.
 4. **Quality-first** — every generate can run a doctor/quality gate (structure, security baseline, optional strict analyze).
 
@@ -25,7 +25,8 @@ Most Flutter generators are one-shot: they dump folders once, then you are on yo
 | Boilerplate for every feature | Vertical slices generate layered files + tests |
 | Inconsistent folder layouts across the team | One `architecture` key for everyone |
 | Forgetting to register routes / DI | `sync` and `feature` update managed regions |
-| Changing Bloc → Cubit mid-project | `migrate --state cubit` |
+| Changing Riverpod → Bloc mid-project | `migrate --state bloc` (rewrites bootstrap too) |
+| Renaming / removing a slice | `rename` / `remove` keep yaml + router + DI aligned |
 | Stale generated deps | `upgrade` refreshes inferred packages + lockfile |
 
 ## What problems does it solve?

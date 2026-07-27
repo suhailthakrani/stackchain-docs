@@ -37,6 +37,22 @@ dart run build_runner build --delete-conflicting-outputs
 
 Re-run with `--keep-old` from a clean commit, or restore from VCS and migrate again with `--keep-old`.
 
+## Migrate left ProviderScope / old state imports
+
+Upgrade to **1.1.3+**. `migrate` refreshes `bootstrap.dart` and app shell for the target stack. Re-run:
+
+```bash
+dart run stackchain migrate --state bloc
+```
+
 ## Feature name rejected
 
 Use snake_case: `^[a-z][a-z0-9_]*$` — e.g. `user_profile`, not `UserProfile`.
+
+## Cannot remove the last feature
+
+Add another feature first, then `remove` the one you no longer need.
+
+## Rename target already exists
+
+Choose a free name, or `remove` the target feature first.
