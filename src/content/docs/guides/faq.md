@@ -29,4 +29,4 @@ Not as a `storage` enum value today. Use Hive / prefs / secure storage. Drift/Is
 
 ## Which version is documented?
 
-Documentation targets **stackchain 1.1.1**.
+Documentation targets **stackchain 1.1.2**.

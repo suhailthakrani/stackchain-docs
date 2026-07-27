@@ -12,7 +12,7 @@ stackchain:
 
 ## Folder structure
 
-Identical directory layout to [Feature First](/architecture/feature-first/):
+Identical directory layout to [Feature First](/stackchain-docs/architecture/feature-first/):
 
 ```text
 lib/features/<name>/

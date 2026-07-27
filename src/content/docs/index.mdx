@@ -7,7 +7,7 @@ hero:
     file: ../../assets/logo.png
   actions:
     - text: Get started
-      link: /getting-started/installation/
+      link: /stackchain-docs/getting-started/installation/
       icon: right-arrow
       variant: primary
     - text: GitHub
@@ -24,7 +24,7 @@ import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/comp
 
 **stackchain** is a Flutter CLI you keep as a **dev dependency** — not a one-shot generator. Declare your stack once in `stackchain.yaml`, generate a runnable app, add vertical slices as you build, then **sync / upgrade / migrate** as the project evolves. Every generate runs a **quality gate**.
 
-<p class="version-badge" style="margin: 1rem 0 1.5rem">package v1.1.1 · MIT</p>
+<p class="version-badge" style="margin: 1rem 0 1.5rem">package v1.1.2 · MIT</p>
 
 ## Declare your stack
 
@@ -111,13 +111,13 @@ dart run stackchain presets
 
 ## How it works
 
-![stackchain.yaml → CLI engine → generated Flutter app with templates, smart merge, and quality gate](/how-it-works.svg)
+![stackchain.yaml → CLI engine → generated Flutter app with templates, smart merge, and quality gate](/stackchain-docs/how-it-works.svg)
 
 1. You define architecture, state, routing, DI, network, and storage in `stackchain.yaml` (or pick a preset).
 2. `init` scaffolds `lib/app`, `lib/core`, `lib/features`, merges pubspec deps, writes `.stackchain/lock.yaml`, and runs the gate.
 3. `feature` / `sync` / `upgrade` / `migrate` update managed regions only — your custom logic stays.
 
-See [How it works](/guides/how-it-works/) for the full pipeline.
+See [How it works](/stackchain-docs/guides/how-it-works/) for the full pipeline.
 
 ## Why stackchain
 
@@ -145,8 +145,8 @@ See [How it works](/guides/how-it-works/) for the full pipeline.
 ## Next steps
 
 <CardGrid>
-  <LinkCard title="Installation" href="/getting-started/installation/" description="Add stackchain as a dev dependency." />
-  <LinkCard title="Quick start" href="/getting-started/quick-start/" description="From flutter create to a running scaffold." />
-  <LinkCard title="Configuration" href="/getting-started/configuration/" description="Every stackchain.yaml field explained." />
-  <LinkCard title="CLI reference" href="/reference/cli/" description="All commands, flags, and examples." />
+  <LinkCard title="Installation" href="/stackchain-docs/getting-started/installation/" description="Add stackchain as a dev dependency." />
+  <LinkCard title="Quick start" href="/stackchain-docs/getting-started/quick-start/" description="From flutter create to a running scaffold." />
+  <LinkCard title="Configuration" href="/stackchain-docs/getting-started/configuration/" description="Every stackchain.yaml field explained." />
+  <LinkCard title="CLI reference" href="/stackchain-docs/reference/cli/" description="All commands, flags, and examples." />
 </CardGrid>

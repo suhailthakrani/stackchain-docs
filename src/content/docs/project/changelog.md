@@ -5,6 +5,10 @@ description: Release history for the stackchain Flutter CLI package.
 
 Documentation tracks the published package. Source of truth: package `CHANGELOG.md`.
 
+## 1.1.2
+
+- Official documentation site published
+
 ## 1.1.1
 
 - Migrate cleanup improvements

@@ -35,4 +35,4 @@ Bricks use `.tpl` files with Mustache-like syntax:
 - `{{name.snakeCase}}`, `{{name.pascalCase}}`, `{{name.camelCase}}`, `{{name.paramCase}}`, `{{name.titleCase}}`, `{{name.constantCase}}`
 - Sections with `#` / `^`
 
-See [Custom bricks](/generators/bricks/) for authoring guidance.
+See [Custom bricks](/stackchain-docs/generators/bricks/) for authoring guidance.

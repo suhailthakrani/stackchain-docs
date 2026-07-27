@@ -39,4 +39,4 @@ Or migrate:
 dart run stackchain migrate --preset production_riverpod
 ```
 
-Full details: [Presets reference](/reference/presets/).
+Full details: [Presets reference](/stackchain-docs/reference/presets/).

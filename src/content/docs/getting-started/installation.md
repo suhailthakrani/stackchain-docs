@@ -33,7 +33,7 @@ flutter pub add --dev stackchain
 
 ```yaml
 dev_dependencies:
-  stackchain: ^1.1.1
+  stackchain: ^1.1.2
 ```
 
 Then:
@@ -99,4 +99,4 @@ These work on most generate commands:
 
 ## Next step
 
-Follow the [Quick start](/getting-started/quick-start/) to scaffold and run the app.
+Follow the [Quick start](/stackchain-docs/getting-started/quick-start/) to scaffold and run the app.

@@ -53,4 +53,4 @@ dart run stackchain help feature
 dart run stackchain init --path ../my_app
 ```
 
-Browse detailed pages for each command in this section, or the condensed [CLI reference](/reference/cli/).
+Browse detailed pages for each command in this section, or the condensed [CLI reference](/stackchain-docs/reference/cli/).

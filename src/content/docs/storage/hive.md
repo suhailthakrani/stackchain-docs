@@ -15,4 +15,4 @@ stackchain:
 
 Generates `local_database.dart` with `hive` + `hive_flutter`.
 
-SQLite/Drift-style offline modules are on the [roadmap](/project/roadmap/) and are **not** a current `storage` enum value.
+SQLite/Drift-style offline modules are on the [roadmap](/stackchain-docs/project/roadmap/) and are **not** a current `storage` enum value.

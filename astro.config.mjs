@@ -2,11 +2,14 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-const site = process.env.SITE_URL ?? 'https://suhailthakrani.github.io/stackchain-docs';
+/** GitHub Pages project site: site = origin, base = /repo */
+const site = process.env.SITE_URL ?? 'https://suhailthakrani.github.io';
+const base = process.env.BASE_PATH ?? '/stackchain-docs';
 
 // https://astro.build/config
 export default defineConfig({
 	site,
+	base,
 	trailingSlash: 'always',
 	integrations: [
 		starlight({
@@ -38,7 +41,7 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: {
 						property: 'og:image',
-						content: `${site}/og-image.svg`,
+						content: `${site}${base}/og-image.svg`,
 					},
 				},
 				{

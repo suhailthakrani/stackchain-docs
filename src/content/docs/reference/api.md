@@ -14,7 +14,7 @@ dart run stackchain <command>
 | Field | Value |
 | --- | --- |
 | Package | `stackchain` |
-| Version | `1.1.1` |
+| Version | `1.1.2` |
 | SDK | `^3.5.0` |
 | License | MIT |
 | Repository | https://github.com/suhailthakrani/stackchain |
