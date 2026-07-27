@@ -1,0 +1,25 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+
+const year = new Date().getFullYear();
+---
+
+<Default><slot /></Default>
+<footer class="sc-footer">
+	<div class="sc-footer-grid">
+		<nav class="sc-footer-links" aria-label="Project links">
+			<a href="https://github.com/suhailthakrani/stackchain" rel="noopener noreferrer">GitHub</a>
+			<a href="https://pub.dev/packages/stackchain" rel="noopener noreferrer">pub.dev</a>
+			<a
+				href="https://github.com/suhailthakrani/stackchain/blob/main/LICENSE"
+				rel="noopener noreferrer">MIT License</a
+			>
+			<a href="/project/changelog/">Changelog</a>
+			<a href="/project/contributing/">Contributing</a>
+		</nav>
+		<p class="sc-footer-meta">
+			<span class="version-badge">docs · package v1.1.1</span>
+			<span style="margin-inline-start: 0.75rem">© {year} stackchain contributors</span>
+		</p>
+	</div>
+</footer>

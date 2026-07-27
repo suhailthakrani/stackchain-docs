@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-label="Feature-first architecture">
+  <rect width="720" height="480" rx="12" fill="#151B22"/>
+  <text x="32" y="40" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="13">lib/</text>
+
+  <rect x="48" y="60" width="200" height="48" rx="8" fill="#1A222C" stroke="#243040"/>
+  <text x="68" y="90" fill="#2EE6A6" font-family="IBM Plex Mono, monospace" font-size="14">app/</text>
+
+  <rect x="48" y="124" width="200" height="48" rx="8" fill="#1A222C" stroke="#243040"/>
+  <text x="68" y="154" fill="#2EE6A6" font-family="IBM Plex Mono, monospace" font-size="14">core/</text>
+
+  <rect x="48" y="188" width="200" height="220" rx="8" fill="#1A222C" stroke="#2EE6A6"/>
+  <text x="68" y="220" fill="#2EE6A6" font-family="IBM Plex Mono, monospace" font-size="14">features/auth/</text>
+  <text x="80" y="250" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">data/</text>
+  <text x="80" y="274" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">domain/</text>
+  <text x="80" y="298" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">presentation/</text>
+  <text x="96" y="322" fill="#E8EEF4" font-family="IBM Plex Mono, monospace" font-size="11">bloc/ · pages/ · widgets/</text>
+  <text x="80" y="354" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">bindings/  (GetX)</text>
+
+  <rect x="280" y="60" width="392" height="348" rx="10" fill="#1A222C" stroke="#243040"/>
+  <text x="304" y="96" fill="#E8EEF4" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600">Vertical slice</text>
+  <text x="304" y="126" fill="#9AABBC" font-family="IBM Plex Sans, sans-serif" font-size="13">Each feature owns its data, domain, and UI.</text>
+
+  <text x="304" y="170" fill="#2EE6A6" font-family="IBM Plex Mono, monospace" font-size="12">dart run stackchain feature auth</text>
+
+  <text x="304" y="210" fill="#E8EEF4" font-family="IBM Plex Sans, sans-serif" font-size="13">Also wires:</text>
+  <text x="304" y="240" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">" router routes region</text>
+  <text x="304" y="264" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">" DI features region</text>
+  <text x="304" y="288" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">" tests + quality gate</text>
+  <text x="304" y="312" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">" stackchain.yaml features list</text>
+  <text x="304" y="336" fill="#9AABBC" font-family="IBM Plex Mono, monospace" font-size="12">" .stackchain/lock.yaml</text>
+</svg>

@@ -1,0 +1,54 @@
+---
+title: Architecture overview
+description: Choose among feature_first, clean, mvvm, and mvc — folder layouts, trade-offs, and how stackchain generates them.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+stackchain supports four architecture values in `stackchain.yaml`:
+
+| Value | Layout style |
+| --- | --- |
+| `feature_first` | Layered vertical slices (data / domain / presentation) |
+| `clean` | Same directories as feature_first; stricter conventions |
+| `mvvm` | data / models / viewmodels / views / widgets |
+| `mvc` | models / controllers / views / widgets |
+
+Configure with:
+
+```yaml
+stackchain:
+  architecture: feature_first
+```
+
+![Feature-first lib layout with vertical slice](/architecture.svg)
+
+## Shared project skeleton
+
+Regardless of architecture, `init` creates:
+
+```text
+lib/
+  app/                 # app.dart, theme/, config/, router/
+  core/                # network, storage, di, errors, utils, services, widgets, session
+  features/<name>/
+  main.dart
+  bootstrap.dart
+  main_dev.dart        # when flavors: true
+  main_staging.dart
+  main_prod.dart
+.stackchain/lock.yaml
+```
+
+## Choosing an architecture
+
+| Choose | When |
+| --- | --- |
+| Feature First | Default for most product apps; clear vertical ownership |
+| Clean | Same structure with stricter layer discipline expectations |
+| MVVM | ViewModels map cleanly to your UI toolkit / designers |
+| MVC | Especially with GetX (`getx_mvc` preset) |
+
+<Aside type="caution">
+`migrate --architecture` regenerates presentation/state/bindings. Domain and data are preserved, but review the tree carefully.
+</Aside>

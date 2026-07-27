@@ -1,0 +1,156 @@
+---
+title: Configuration
+description: Complete reference for stackchain.yaml — every field, allowed values, defaults, and examples.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+All configuration lives under a root `stackchain:` key in `stackchain.yaml` at the project root. A legacy alias `flutter_starter:` is also accepted by the parser.
+
+Module toggles may be **flat** under `stackchain:` or nested under `modules:`.
+
+<Aside type="note">
+Explicit YAML keys always win over values expanded from a `preset`.
+</Aside>
+
+## Minimal example
+
+```yaml
+stackchain:
+  features: [home]
+```
+
+## Full example
+
+```yaml
+stackchain:
+  # preset: production_bloc   # optional; explicit keys win
+  architecture: feature_first   # feature_first | clean | mvvm | mvc
+  state_management: bloc        # bloc | cubit | riverpod | provider | getx | rxdart
+  routing: go_router            # go_router | auto_route | navigator | getx
+  di: get_it                    # get_it | injectable | getx
+  network: dio                  # dio | http
+  storage:
+    - shared_preferences
+    - secure_storage
+    # - hive
+  localization: false
+  firebase: false
+  analytics: false
+  crashlytics: false
+  biometrics: false
+  dark_mode: true
+  core_services: true
+  core_widgets: true
+  flavors: true
+  ci: true
+  strict_quality: false
+  features:
+    - splash
+    - auth
+    - home
+    - profile
+    - settings
+```
+
+## Field reference
+
+### `preset`
+
+| | |
+| --- | --- |
+| **Type** | `string` \| omitted |
+| **Default** | none |
+| **Values** | `production_bloc`, `production_riverpod`, `production_rxdart`, `clean_cubit`, `getx_mvc`, `firebase_bloc`, `minimal` |
+
+Expands a blueprint. List with `dart run stackchain presets`.
+
+### `architecture`
+
+| | |
+| --- | --- |
+| **Type** | `string` |
+| **Default** | `feature_first` |
+| **Values** | `feature_first`, `clean`, `mvvm`, `mvc` |
+
+Controls feature folder layout. See [Architecture](/architecture/overview/).
+
+### `state_management`
+
+| | |
+| --- | --- |
+| **Type** | `string` |
+| **Default** | `bloc` |
+| **Values** | `bloc`, `cubit`, `riverpod`, `provider`, `getx`, `rxdart` |
+
+### `routing`
+
+| | |
+| --- | --- |
+| **Type** | `string` |
+| **Default** | `go_router` (or `getx` when state is GetX and routing omitted) |
+| **Values** | `go_router`, `auto_route`, `navigator`, `getx` |
+
+### `di`
+
+| | |
+| --- | --- |
+| **Type** | `string` |
+| **Default** | `get_it` (or `getx` when state is GetX and di omitted) |
+| **Values** | `get_it`, `injectable`, `getx` |
+
+### `network`
+
+| | |
+| --- | --- |
+| **Type** | `string` |
+| **Default** | `dio` |
+| **Values** | `dio`, `http` |
+
+### `storage`
+
+| | |
+| --- | --- |
+| **Type** | `string` or `list` |
+| **Default** | `[shared_preferences, secure_storage]` |
+| **Values** | `shared_preferences`, `hive`, `secure_storage` |
+
+Always generates `storage_keys.dart` and `cache_manager.dart`. Selected backends add their implementations.
+
+### `features`
+
+| | |
+| --- | --- |
+| **Type** | `list` of strings |
+| **Default** | `['home']` |
+| **Pattern** | snake_case: `^[a-z][a-z0-9_]*$` |
+
+Feature names used at `init` and appended by `feature` / `add`.
+
+### Module toggles (booleans)
+
+| Key | Default | Effect |
+| --- | --- | --- |
+| `localization` | `false` | `l10n.yaml` + ARB (en/es/ar) |
+| `firebase` | `false` | Placeholder `firebase_options.dart` |
+| `analytics` | `false` | Analytics wiring toggles |
+| `crashlytics` | `false` | Crashlytics wiring toggles |
+| `biometrics` | `false` | Biometrics core helpers |
+| `dark_mode` | `true` | Theme support |
+| `core_services` | `true` | Core service stubs |
+| `core_widgets` | `true` | Shared core widgets |
+| `flavors` | `true` | `main_dev/staging/prod.dart` |
+| `ci` | `true` | GitHub Actions workflow |
+| `strict_quality` | `false` | Fail quality gate on analyze issues |
+
+## GetX smart defaults
+
+```yaml
+stackchain:
+  state_management: getx
+  # routing and di omitted → both become getx
+```
+
+## Invalid values
+
+Unknown architecture strings (for example `hexagonal`) throw a format error at parse time. Prefer values from this page or [stackchain.yaml reference](/reference/stackchain-yaml/).

@@ -1,0 +1,50 @@
+---
+title: How it works
+description: Internal pipeline — config parsing, templates, bricks, smart merge, lockfile, and quality gate.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+![How stackchain works](/how-it-works.svg)
+
+## 1. Configuration
+
+`YamlParser` reads `stackchain.yaml` (or `flutter_starter` legacy root). `PresetRegistry.expand` applies presets; **explicit keys win**.
+
+## 2. Generation
+
+`ProjectGenerator` orchestrates init:
+
+1. Flutter app detection
+2. Config load
+3. Feature directories
+4. Template writes (app / router / core / features / modules)
+5. Pubspec dependency merge
+6. Default YAML write if missing
+7. Stock test cleanup
+8. Lockfile
+9. Quality gate
+
+## 3. Templates vs bricks
+
+| Concern | Mechanism |
+| --- | --- |
+| App shell, core, features on init | Dart template classes |
+| `make page|widget|service` | BrickEngine + `.tpl` |
+| Custom org generators | `.stackchain/bricks` |
+
+## 4. Regeneration & preservation
+
+See [Smart merge](/guides/smart-merge/). Hand code outside `// <stackchain:…>` markers is preserved. Domain/data survive `migrate` presentation rewrites.
+
+## 5. Lockfile
+
+`.stackchain/lock.yaml` records the stack fingerprint for upgrade/migrate awareness.
+
+## 6. Quality gate
+
+`doctor` and post-generate gates verify structure and security baseline; `strict_quality` can fail on analyze.
+
+<Aside type="tip">
+Treat managed regions as generated API surface. Put custom logic in unmarked code or dedicated files.
+</Aside>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="stackchain">
+  <rect width="64" height="64" rx="14" fill="#0F1419"/>
+  <path
+    fill="#2EE6A6"
+    d="M32 8L50 18.5V39.5L32 50L14 39.5V18.5L32 8Z"
+    opacity="0.22"
+  />
+  <path
+    stroke="#2EE6A6"
+    stroke-width="3.2"
+    stroke-linejoin="round"
+    d="M32 12L47 20.8V39.2L32 48L17 39.2V20.8L32 12Z"
+  />
+  <path
+    stroke="#E8EEF4"
+    stroke-width="3.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M24.5 28.5c0-3.2 2.4-5.2 6.2-5.2 2.2 0 4 .7 5.2 2"
+  />
+  <path
+    stroke="#2EE6A6"
+    stroke-width="3.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M39.5 35.5c0 3.2-2.4 5.2-6.2 5.2-2.2 0-4-.7-5.2-2"
+  />
+  <path
+    stroke="#E8EEF4"
+    stroke-width="3.4"
+    stroke-linecap="round"
+    d="M30.5 30.5h3"
+  />
+  <path
+    stroke="#2EE6A6"
+    stroke-width="3.4"
+    stroke-linecap="round"
+    d="M30.5 33.5h3"
+  />
+</svg>
