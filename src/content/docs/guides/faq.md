@@ -1,11 +1,11 @@
 ---
 title: FAQ
-description: Frequently asked questions about stackchain.
+description: Common questions about stackchain.
 ---
 
-## Is stackchain a one-shot generator?
+## Is this a one-shot generator?
 
-No. Keep it as a dev dependency and use `sync`, `upgrade`, and `migrate` over time.
+No. Keep it as a dev dependency. Use `feature`, `sync`, `upgrade`, and `migrate` over time.
 
 ## Does it replace flutter create?
 
@@ -13,35 +13,30 @@ No. Create the app first, then run stackchain inside it.
 
 ## Will sync delete my code?
 
-Only content inside `// <stackchain:…>` markers is replaced. Outside markers is preserved. Whole-file overwrites require `--overwrite`.
-
-## Why is clean the same folder tree as feature_first?
-
-By design in the current architecture plugins — clean emphasizes conventions on the same layered layout.
-
-## Can I use SQLite?
-
-Not as a `storage` enum value today. Use Hive / prefs / secure storage. Drift/Isar offline modules are on the roadmap.
-
-## What is make feature vs bricks/feature?
-
-`make feature` and `feature` use the vertical slice generator. The GetX-oriented brick under `bricks/feature/` is not that path.
+Only code inside `// <stackchain:…>` markers is replaced. Everything else is preserved.
 
 ## Can I rename or remove a feature?
 
-Yes.
+Yes:
 
 ```bash
 dart run stackchain rename profile account
 dart run stackchain remove auth
 ```
 
-Both update `stackchain.yaml`, files/tests, and router/DI. You cannot remove the last remaining feature.
+You can't remove the last remaining feature.
 
-## Does migrate rewrite bootstrap?
+## Can I switch state management later?
 
-Yes. State changes like Riverpod → Bloc refresh `bootstrap.dart` (drops `ProviderScope` / Riverpod imports), plus presentation, DI, and feature tests.
+Yes. Preview first:
 
-## Which version is documented?
+```bash
+dart run stackchain migrate --state cubit --dry-run
+dart run stackchain migrate --state cubit
+```
 
-Documentation targets **stackchain 1.1.3**.
+Domain/data layers stay; presentation and wiring are regenerated. Commit first.
+
+## Which version is this docs for?
+
+**stackchain 1.1.3**

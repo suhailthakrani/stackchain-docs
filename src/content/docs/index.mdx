@@ -1,13 +1,13 @@
 ---
 title: stackchain
-description: Flutter scaffolding from a simple config. Use presets, add full features, keep router and DI in sync, migrate safely, and run quality checks on every generate.
+description: Scaffold a Flutter app from a YAML config. Add features with one command. Keep router and DI in sync.
 hero:
-  tagline: Flutter scaffolding from a simple config. Use presets, add full features, keep router and DI in sync, migrate safely, and run quality checks on every generate.
+  tagline: Scaffold your Flutter app from a YAML config — then keep using it as you build.
   image:
     file: ../../assets/logo.png
   actions:
-    - text: Get started
-      link: /stackchain-docs/getting-started/installation/
+    - text: Quick start
+      link: /stackchain-docs/getting-started/quick-start/
       icon: right-arrow
       variant: primary
     - text: GitHub
@@ -20,137 +20,54 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-**stackchain** is a Flutter CLI you keep as a **dev dependency** — not a one-shot generator. Declare your stack once in `stackchain.yaml`, generate a runnable app, add vertical slices as you build, then **sync / upgrade / migrate** as the project evolves. Every generate runs a **quality gate**.
+**stackchain** turns a few lines of YAML into a runnable Flutter app — with architecture, state management, routing, and DI already wired. Add features as you go. Your hand-written code stays safe.
 
-<p class="version-badge" style="margin: 1rem 0 1.5rem">package v1.1.3 · MIT</p>
+<p class="version-badge" style="margin: 1rem 0 1.5rem">v1.1.3 · MIT</p>
 
-## Declare your stack
-
-```yaml
-stackchain:
-  architecture: feature_first
-  state_management: bloc
-  routing: go_router
-  di: get_it
-  network: dio
-  storage:
-    - shared_preferences
-    - secure_storage
-  features:
-    - splash
-    - auth
-    - home
-```
-
-Or start from a production preset:
-
-```yaml
-stackchain:
-  preset: production_bloc
-  features: [splash, auth, home, settings]
-```
-
-## CLI in 30 seconds
+## 30-second start
 
 ```bash
+cd my_app
 dart pub add --dev stackchain
 dart run stackchain init
-dart run stackchain feature auth
 flutter pub get
 flutter run
 ```
 
-<Tabs>
-  <TabItem label="Scaffold">
-```bash
-dart run stackchain init
-dart run stackchain init --overwrite
-dart run stackchain init --dry-run
-```
-  </TabItem>
-  <TabItem label="Evolve">
-```bash
-dart run stackchain feature auth
-dart run stackchain rename profile account
-dart run stackchain remove auth
-dart run stackchain sync
-dart run stackchain upgrade
-dart run stackchain migrate --state bloc
-```
-  </TabItem>
-  <TabItem label="Quality">
-```bash
-dart run stackchain doctor
-dart run stackchain presets
-```
-  </TabItem>
-</Tabs>
+## Pick a stack
 
-## Feature highlights
+```yaml
+stackchain:
+  preset: production_bloc
+  features: [splash, auth, home]
+```
+
+Or set each piece yourself: `architecture`, `state_management`, `routing`, `di`, `network`.
+
+## What you can do
 
 <CardGrid>
-  <Card title="Presets" icon="rocket">
-    One-line blueprints like `production_bloc`, `production_riverpod`, `getx_mvc`, and `firebase_bloc`.
+  <Card title="Scaffold once" icon="rocket">
+    `init` builds `lib/app`, `lib/core`, and `lib/features` — ready to run.
   </Card>
-  <Card title="Vertical slices" icon="add-document">
-    `feature` / `rename` / `remove` wire or tear down files + router + DI + tests.
+  <Card title="Add features" icon="add-document">
+    `feature auth` creates files, routes, DI, and tests in one command.
   </Card>
-  <Card title="Smart merge" icon="setting">
-    Only managed `&lt;stackchain:…&gt;` regions are updated. Hand-written code outside markers survives.
+  <Card title="Stay in sync" icon="setting">
+    Router and DI update automatically. Code outside markers is never touched.
   </Card>
-  <Card title="Migrate & upgrade" icon="approve-check">
-    Evolve `riverpod` → `bloc`, switch presets, refresh deps — bootstrap, DI, and tests included.
-  </Card>
-  <Card title="Quality gate" icon="warning">
-    Structure checks, security baseline, and optional strict `dart analyze` on every generate.
-  </Card>
-  <Card title="Bricks" icon="puzzle">
-    `make page|widget|service` plus custom project bricks under `.stackchain/bricks/`.
+  <Card title="Change later" icon="approve-check">
+    Switch Bloc → Cubit (or a preset) with `migrate`. Preview with `--dry-run`.
   </Card>
 </CardGrid>
 
-## How it works
-
-![stackchain.yaml → CLI engine → generated Flutter app with templates, smart merge, and quality gate](/stackchain-docs/how-it-works.svg)
-
-1. You define architecture, state, routing, DI, network, and storage in `stackchain.yaml` (or pick a preset).
-2. `init` scaffolds `lib/app`, `lib/core`, `lib/features`, merges pubspec deps, writes `.stackchain/lock.yaml`, and runs the gate.
-3. `feature` / `rename` / `remove` / `sync` / `upgrade` / `migrate` update managed regions — your custom logic outside markers stays.
-
-See [How it works](/stackchain-docs/guides/how-it-works/) for the full pipeline.
-
-## Why stackchain
-
-| Problem | Manual Flutter setup | With stackchain |
-| --- | --- | --- |
-| Architecture consistency | Copy-paste folders forever | One YAML source of truth |
-| Adding a feature | Create 10+ files by hand | `dart run stackchain feature auth` |
-| Renaming a feature | Manual path + import surgery | `dart run stackchain rename profile account` |
-| Removing a feature | Leftover routes/DI | `dart run stackchain remove auth` |
-| Wiring router + DI | Easy to forget | Smart merge into managed regions |
-| Changing state library mid-project | Painful rewrite | `migrate --state bloc` |
-| Dependency drift | Manual pubspec edits | `upgrade` refreshes inferred deps |
-| Quality baseline | Optional / forgotten | Gate on every generate |
-
-## Who should use it
-
-- Teams shipping production Flutter apps that want a repeatable structure
-- Solo developers who want feature-first (or clean / MVVM / MVC) scaffolding without boilerplate
-- Maintainers who expect the stack to **evolve**, not freeze on day one
-
-## When not to use it
-
-- Tiny prototypes where a single `main.dart` is enough
-- Apps with a custom architecture that cannot map to feature_first / clean / mvvm / mvc
-- Projects that must never run generation tooling against the tree
-
-## Next steps
+## Next
 
 <CardGrid>
-  <LinkCard title="Installation" href="/stackchain-docs/getting-started/installation/" description="Add stackchain as a dev dependency." />
-  <LinkCard title="Quick start" href="/stackchain-docs/getting-started/quick-start/" description="From flutter create to a running scaffold." />
-  <LinkCard title="Configuration" href="/stackchain-docs/getting-started/configuration/" description="Every stackchain.yaml field explained." />
-  <LinkCard title="CLI reference" href="/stackchain-docs/reference/cli/" description="All commands, flags, and examples." />
+  <LinkCard title="Quick start" href="/stackchain-docs/getting-started/quick-start/" description="From flutter create to a running app." />
+  <LinkCard title="Configuration" href="/stackchain-docs/getting-started/configuration/" description="stackchain.yaml — the important fields only." />
+  <LinkCard title="Commands" href="/stackchain-docs/cli/overview/" description="init, feature, sync, migrate, and the rest." />
+  <LinkCard title="Examples" href="/stackchain-docs/guides/examples/" description="Copy-paste stacks for Bloc, Riverpod, GetX." />
 </CardGrid>

@@ -1,9 +1,9 @@
 ---
 title: Examples
-description: Practical stackchain.yaml and CLI examples for common Flutter stacks.
+description: Copy-paste stacks for common Flutter setups.
 ---
 
-## Production Bloc
+## Bloc (recommended default)
 
 ```yaml
 stackchain:
@@ -18,7 +18,7 @@ flutter pub get
 flutter run -t lib/main_dev.dart --dart-define=FLAVOR=dev
 ```
 
-## Riverpod production
+## Riverpod
 
 ```yaml
 stackchain:
@@ -26,12 +26,12 @@ stackchain:
   features: [home, profile]
 ```
 
-## GetX MVC
+## GetX
 
 ```yaml
 stackchain:
   preset: getx_mvc
-  features: [home, auth]
+  features: [splash, auth, home]
 ```
 
 ## Minimal
@@ -42,7 +42,7 @@ stackchain:
   features: [home]
 ```
 
-## Full manual stack
+## Manual (no preset)
 
 ```yaml
 stackchain:
@@ -51,30 +51,16 @@ stackchain:
   routing: go_router
   di: get_it
   network: dio
-  storage: [shared_preferences, secure_storage, hive]
-  flavors: true
-  ci: true
-  features: [splash, auth, home, profile]
+  features: [splash, auth, home]
 ```
 
-## Evolve mid-project
+## Evolve later
 
 ```bash
 dart run stackchain feature notifications
 dart run stackchain rename profile account
 dart run stackchain remove notifications
-
-dart run stackchain migrate --state bloc --dry-run
-dart run stackchain migrate --state bloc
-dart run stackchain migrate --preset production_riverpod
+dart run stackchain migrate --state cubit --dry-run
+dart run stackchain migrate --state cubit
 dart run stackchain upgrade
-```
-
-## Bricks
-
-```bash
-dart run stackchain make page onboarding
-dart run stackchain make widget primary_button
-dart run stackchain make service analytics
-dart run stackchain new company_auth_slice
 ```

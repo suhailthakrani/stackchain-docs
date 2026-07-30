@@ -1,29 +1,26 @@
 ---
-title: State management overview
-description: Supported state libraries in stackchain — bloc, cubit, riverpod, provider, getx, and rxdart.
+title: State management
+description: bloc, cubit, riverpod, provider, getx, and rxdart.
 ---
-
-Configure with:
 
 ```yaml
 stackchain:
   state_management: bloc
 ```
 
-| Value | Inferred packages |
+| Value | Packages added |
 | --- | --- |
-| `bloc` / `cubit` | `flutter_bloc`, `bloc` (+ `bloc_test` in dev) |
+| `bloc` / `cubit` | `flutter_bloc`, `bloc` |
 | `riverpod` | `flutter_riverpod` |
 | `provider` | `provider` |
 | `getx` | `get` |
 | `rxdart` | `rxdart` |
 
-Also inferred globally: `equatable`, `logger`, `connectivity_plus`.
-
 Default: **`bloc`**.
 
-Change later with:
+Switch later:
 
 ```bash
+dart run stackchain migrate --state cubit --dry-run
 dart run stackchain migrate --state cubit
 ```

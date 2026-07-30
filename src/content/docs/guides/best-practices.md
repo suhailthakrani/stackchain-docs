@@ -1,34 +1,28 @@
 ---
 title: Best practices
-description: Recommended workflows for using stackchain safely in production Flutter apps.
+description: Simple habits for using stackchain well.
 ---
 
 ## Config
 
 1. Prefer a **preset**, then override only what you must.
-2. Keep `features` snake_case and stable — renaming is a manual migrate.
+2. Keep feature names snake_case (`auth`, `user_profile`).
 3. Commit `stackchain.yaml` and `.stackchain/lock.yaml`.
 
-## Generation hygiene
+## Day to day
 
-1. Dry-run before overwrite or migrate.
-2. Never put irreplaceable logic inside managed regions.
-3. Run `doctor` in CI (in addition to the generated workflow when `ci: true`).
+1. Add features with `feature` — don't hand-wire routes/DI.
+2. Keep custom logic **outside** `// <stackchain:…>` markers.
+3. Preview big changes: `--dry-run` before `migrate` or `--overwrite`.
 
-## Features
+## Evolving
 
-1. Use named recipes (`auth`, `settings`, `profile`) when they match the domain.
-2. Keep domain/data pure; put UI state in presentation only.
-3. Register manual services outside `<stackchain:…>` markers or extend via bricks.
-
-## Evolution
-
-1. `sync` for wiring; `upgrade` for deps; `migrate` for stack changes.
-2. Use `--keep-old` when you need a staged cleanup.
-3. Re-run widget/unit tests after migrate.
+| Need | Command |
+| --- | --- |
+| Re-wire routes/DI | `sync` |
+| Refresh packages | `upgrade` |
+| Switch Bloc → Cubit, etc. | `migrate --state cubit` |
 
 ## Security
 
-1. Keep `secure_storage` enabled for tokens.
-2. Do not log secrets — rely on generated logger/interceptor patterns carefully.
-3. Treat `strict_quality: true` as the bar for production presets.
+Keep `secure_storage` for tokens. Turn on `strict_quality: true` for production apps.

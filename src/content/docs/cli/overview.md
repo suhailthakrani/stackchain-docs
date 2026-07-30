@@ -1,60 +1,47 @@
 ---
-title: CLI overview
-description: Overview of the stackchain CLI — commands, global flags, and how invocations map to generators.
+title: Commands overview
+description: The stackchain commands you'll use day to day.
 ---
 
-Run stackchain with:
-
 ```bash
-dart run stackchain <command> [arguments]
+dart run stackchain <command>
 ```
 
-With **no subcommand**, the CLI behaves like `init`.
+No command? Same as `init`.
 
-## Commands
+## Everyday
 
-| Command | Purpose |
+| Command | What it does |
 | --- | --- |
-| `help [command]` | Usage / per-command help |
-| `init` | Full scaffold from `stackchain.yaml` |
-| `feature <name>` | Vertical slice (files + router + DI + tests + gate) |
-| `add <name>` | Alias for `feature` |
-| `remove <name>` | Remove a feature (files + yaml + router/DI) |
-| `rename <from> <to>` | Rename a feature end-to-end |
-| `sync` | Smart-merge managed regions only |
-| `upgrade` | Refresh deps, sync, lockfile, quality gate |
-| `migrate` | Evolve stack (architecture / state / routing / DI / network / preset) |
-| `doctor` | Quality gate only (no generate) |
-| `presets` | List blueprint IDs |
-| `make <type> <name>` | Brick generators (`page`, `widget`, `service`; `feature` routes to vertical slice) |
-| `list` | List built-in + local bricks |
-| `new <brick_name>` | Scaffold a custom brick under `.stackchain/bricks/` |
+| `init` | Scaffold the whole app |
+| `feature <name>` | Add a feature (files + routes + DI + tests) |
+| `rename <from> <to>` | Rename a feature |
+| `remove <name>` | Remove a feature |
+| `sync` | Re-wire router & DI |
+| `upgrade` | Refresh dependencies |
+| `migrate` | Switch architecture / state / routing / DI / preset |
+| `doctor` | Health check only |
+| `presets` | List built-in presets |
 
-## Global options
+## Also useful
 
-| Flag | Short | Description |
+| Command | What it does |
 | --- | --- |
-| `--help` | `-h` | Show usage |
-| `--overwrite` | `-f` | Overwrite existing generated files |
-| `--dry-run` | | Print actions, no writes |
-| `--verbose` | `-v` | Verbose logging |
-| `--skip-analyze` | | Skip `dart analyze` in quality gate |
-| `--path` | `-p` | Flutter project root (default: cwd) |
+| `make page\|widget\|service <name>` | Generate a single piece |
+| `list` | List available generators |
+| `new <name>` | Create a custom generator |
+| `help [command]` | Help for a command |
 
-## Help
+## Useful flags
+
+| Flag | Meaning |
+| --- | --- |
+| `--dry-run` | Preview, don't write |
+| `--overwrite` / `-f` | Overwrite existing files |
+| `--skip-analyze` | Skip analyzer in the quality check |
+| `--path` / `-p` | Project root (default: current folder) |
 
 ```bash
-dart run stackchain help
 dart run stackchain help migrate
-dart run stackchain help feature
-dart run stackchain help rename
-dart run stackchain help remove
+dart run stackchain init --dry-run
 ```
-
-## Project path
-
-```bash
-dart run stackchain init --path ../my_app
-```
-
-Browse detailed pages for each command in this section, or the condensed [CLI reference](/stackchain-docs/reference/cli/).

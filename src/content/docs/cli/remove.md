@@ -1,44 +1,30 @@
 ---
-title: remove
-description: Remove a feature — yaml, files, tests, and router/DI wiring.
+title: remove & rename
+description: Remove or rename a feature — files, yaml, routes, and DI.
 ---
 
-## Description
-
-`remove` tears down a feature that was added with `feature` / `add`:
-
-- drops it from `stackchain.yaml`
-- deletes `lib/features/<name>/` and matching `test/features/<name>_*.dart`
-- re-syncs router + DI managed regions
-- strips GoRouter auth redirect when removing `auth`
-- updates the lockfile and runs the quality gate
-
-You cannot remove the last remaining feature — add another first.
-
-## Usage
-
-```bash
-dart run stackchain remove <name>
-dart run stackchain remove --name <name>
-```
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| `--name`, `-n` | Feature name (alternative to positional) |
-| `--dry-run` | Preview only |
-| `--skip-analyze` | Skip analyze in gate |
-
-## Examples
+## Remove
 
 ```bash
 dart run stackchain remove auth
 dart run stackchain remove notifications --dry-run
 ```
 
-## Safety tips
+Deletes the feature folder + tests, updates `stackchain.yaml`, and re-wires routes/DI.
+
+You can't remove the last remaining feature — add another first.
+
+## Rename
+
+```bash
+dart run stackchain rename profile account
+dart run stackchain rename --from auth --to login --dry-run
+```
+
+Both names must be snake_case. Rewrites yaml, files, tests, routes, and DI.
+
+## Tips
 
 1. Commit first.
-2. Prefer `--dry-run` to preview deletions.
-3. Hand-written files under the feature folder are deleted with the tree — move keepers out first if needed.
+2. Prefer `--dry-run`.
+3. Hand-written files under a removed feature folder are deleted with it — move keepers out first.

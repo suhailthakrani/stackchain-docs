@@ -1,11 +1,9 @@
 ---
 title: Quick start
-description: Scaffold a production-shaped Flutter app with stackchain in a few commands.
+description: From flutter create to a running scaffold in a few commands.
 ---
 
 import { Aside, Steps } from '@astrojs/starlight/components';
-
-Get from an empty Flutter app to a runnable scaffold with flavors, DI, routing, and a home feature.
 
 <Steps>
 
@@ -22,7 +20,7 @@ Get from an empty Flutter app to a runnable scaffold with flavors, DI, routing, 
    dart pub add --dev stackchain
    ```
 
-3. **(Optional) Commit a config**
+3. **(Optional) Set your stack**
 
    Create `stackchain.yaml` at the project root:
 
@@ -33,45 +31,24 @@ Get from an empty Flutter app to a runnable scaffold with flavors, DI, routing, 
        - splash
        - auth
        - home
-       - settings
    ```
 
-   Skip this step to use defaults; `init` will write a starter YAML.
+   Skip this to use defaults (Bloc + GoRouter + GetIt).
 
-4. **Initialize**
+4. **Scaffold**
 
    ```bash
    dart run stackchain init
    ```
 
-   What happens:
-
-   - Detects a Flutter app via `pubspec.yaml`
-   - Parses config (or defaults)
-   - Writes `lib/app`, `lib/core`, `lib/features`, entrypoints
-   - Merges inferred dependencies into `pubspec.yaml`
-   - Replaces the stock counter `main.dart`
-   - Writes `.stackchain/lock.yaml`
-   - Runs the quality gate
-
-5. **Add / rename / remove slices**
-
-   ```bash
-   dart run stackchain feature auth
-   dart run stackchain rename profile account
-   dart run stackchain remove notifications
-   ```
-
-   Named recipes like `auth`, `settings`, and `profile` generate richer extras (forms, tests). Generic names get a solid baseline + smoke tests.
-
-6. **Resolve packages and run**
+5. **Run**
 
    ```bash
    flutter pub get
    flutter run
    ```
 
-   With flavors enabled (default):
+   With flavors (default):
 
    ```bash
    flutter run -t lib/main_dev.dart --dart-define=FLAVOR=dev
@@ -79,31 +56,30 @@ Get from an empty Flutter app to a runnable scaffold with flavors, DI, routing, 
 
 </Steps>
 
-<Aside type="tip" title="Dry-run first">
-Use `dart run stackchain init --dry-run` or `feature … --dry-run` to preview file actions without writing.
-</Aside>
+## Add a feature
+
+```bash
+dart run stackchain feature auth
+```
+
+Creates the feature folder, wires routes + DI, adds tests.
 
 ## What you get
 
-| Area | Generated |
-| --- | --- |
-| App shell | `lib/app/` — theme, config, router |
-| Core | network, storage, DI, errors, utils, session, widgets |
-| Features | vertical folders matching your architecture |
-| Flavors | `main_dev.dart` / `main_staging.dart` / `main_prod.dart` when enabled |
-| CI | `.github/workflows/stackchain_ci.yml` when `ci: true` |
-| Lock | `.stackchain/lock.yaml` |
-
-## Common next commands
-
-```bash
-dart run stackchain sync
-dart run stackchain doctor
-dart run stackchain make page onboarding
-dart run stackchain make widget app_chip
-dart run stackchain make service analytics
-dart run stackchain upgrade
-dart run stackchain migrate --state bloc --dry-run
+```text
+lib/
+├── app/        # App, theme, router
+├── core/       # network, storage, DI, session
+├── features/   # one folder per feature
+└── main.dart
 ```
 
-Configure every field in [Configuration](/stackchain-docs/getting-started/configuration/).
+<Aside type="tip">
+Preview without writing: `dart run stackchain init --dry-run`
+</Aside>
+
+## Next
+
+- [Configuration](/stackchain-docs/getting-started/configuration/) — YAML fields
+- [Commands](/stackchain-docs/cli/overview/) — everyday CLI usage
+- [Examples](/stackchain-docs/guides/examples/) — copy-paste stacks

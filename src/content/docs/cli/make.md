@@ -1,42 +1,28 @@
 ---
-title: make
-description: Generate pages, widgets, and services from bricks — plus feature routing into the vertical slice generator.
+title: make & bricks
+description: Generate a page, widget, or service — or add your own generator.
 ---
 
-## Description
-
-`make` runs brick-based generators.
-
-## Usage
-
-```bash
-dart run stackchain make <type> <name> [options]
-```
-
-## Types
-
-| Type | Output |
-| --- | --- |
-| `feature` | Routes to the vertical slice generator (same as `feature`) — **not** the GetX-style brick under `bricks/feature/` |
-| `page` | `lib/shared/pages/<name>_page.dart` then auto-sync (analyze skipped) |
-| `widget` | `lib/core/widgets/<name>.dart` |
-| `service` | `lib/core/services/<name>_service.dart` |
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| `--name`, `-n` | Name |
-| `--var`, `-V key=value` | Extra template vars (repeatable) |
-| `--overwrite`, `-f` | Overwrite |
-| `--dry-run` | Preview |
-| `--skip-analyze` | Skip analyze |
-
-## Examples
+## make
 
 ```bash
 dart run stackchain make page onboarding
 dart run stackchain make widget app_chip
-dart run stackchain make service sync
-dart run stackchain make page checkout -V title=Checkout
+dart run stackchain make service analytics
 ```
+
+| Type | Creates |
+| --- | --- |
+| `page` | a page under `lib/shared/pages/` |
+| `widget` | a widget under `lib/core/widgets/` |
+| `service` | a service under `lib/core/services/` |
+| `feature` | same as `feature` command |
+
+## Custom generators
+
+```bash
+dart run stackchain list          # see available generators
+dart run stackchain new my_gen    # scaffold a custom one
+```
+
+Custom bricks live in `.stackchain/bricks/<name>/`. Template files end in `.tpl`.

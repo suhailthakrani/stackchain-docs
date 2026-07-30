@@ -1,54 +1,30 @@
 ---
-title: Architecture overview
-description: Choose among feature_first, clean, mvvm, and mvc — folder layouts, trade-offs, and how stackchain generates them.
+title: Architecture
+description: Pick feature_first, clean, mvvm, or mvc.
 ---
-
-import { Aside } from '@astrojs/starlight/components';
-
-stackchain supports four architecture values in `stackchain.yaml`:
-
-| Value | Layout style |
-| --- | --- |
-| `feature_first` | Layered vertical slices (data / domain / presentation) |
-| `clean` | Same directories as feature_first; stricter conventions |
-| `mvvm` | data / models / viewmodels / views / widgets |
-| `mvc` | models / controllers / views / widgets |
-
-Configure with:
 
 ```yaml
 stackchain:
   architecture: feature_first
 ```
 
-![Feature-first lib layout with vertical slice](/stackchain-docs/architecture.svg)
+| Value | Layout |
+| --- | --- |
+| `feature_first` | data / domain / presentation (default) |
+| `clean` | same folders, stricter conventions |
+| `mvvm` | data / models / viewmodels / views |
+| `mvc` | models / controllers / views (great with GetX) |
 
-## Shared project skeleton
-
-Regardless of architecture, `init` creates:
+Every architecture still gets the same app shell:
 
 ```text
 lib/
-  app/                 # app.dart, theme/, config/, router/
-  core/                # network, storage, di, errors, utils, services, widgets, session
-  features/<name>/
-  main.dart
-  bootstrap.dart
-  main_dev.dart        # when flavors: true
-  main_staging.dart
-  main_prod.dart
-.stackchain/lock.yaml
+├── app/        # App, theme, router
+├── core/       # network, storage, DI, session
+├── features/
+└── main.dart
 ```
 
-## Choosing an architecture
+Not sure? Use `feature_first` (or the `production_bloc` preset).
 
-| Choose | When |
-| --- | --- |
-| Feature First | Default for most product apps; clear vertical ownership |
-| Clean | Same structure with stricter layer discipline expectations |
-| MVVM | ViewModels map cleanly to your UI toolkit / designers |
-| MVC | Especially with GetX (`getx_mvc` preset) |
-
-<Aside type="caution">
-`migrate --architecture` regenerates the feature tree for the new layout. State/routing/DI migrations preserve domain and data but refresh bootstrap, presentation, DI, and tests — review carefully.
-</Aside>
+Changing architecture later: `dart run stackchain migrate --architecture clean --dry-run`

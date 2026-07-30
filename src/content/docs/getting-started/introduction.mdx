@@ -1,77 +1,39 @@
 ---
 title: Introduction
-description: What stackchain is, the problems it solves, who should use it, and how it fits into a Flutter project lifecycle.
+description: What stackchain is and why you'd use it.
 ---
 
 import { Aside } from '@astrojs/starlight/components';
 
-**stackchain** is a config-driven Flutter scaffolding CLI. You keep it as a **dev dependency**, declare your preferred stack in `stackchain.yaml`, and generate a production-shaped app that can keep evolving.
+**stackchain** scaffolds a Flutter app from a simple YAML config — and keeps helping as the project grows.
 
-Current package version: **1.1.3** · License: **MIT** · [pub.dev/packages/stackchain](https://pub.dev/packages/stackchain)
+Version **1.1.3** · MIT · [pub.dev](https://pub.dev/packages/stackchain)
 
-## What is stackchain?
+## In one sentence
 
-Most Flutter generators are one-shot: they dump folders once, then you are on your own. stackchain is different:
+Write your preferred stack in `stackchain.yaml` → run `init` → get a real app structure → add features with one command.
 
-1. **Config-driven** — architecture, state, routing, DI, network, and storage live in YAML.
-2. **Lifecycle-aware** — `init`, `feature`, `rename`, `remove`, `sync`, `upgrade`, and `migrate` cover the full project life.
-3. **Merge-safe** — managed regions use `// <stackchain:id>` markers so hand-written code outside them is preserved.
-4. **Quality-first** — every generate can run a doctor/quality gate (structure, security baseline, optional strict analyze).
+## Why bother?
 
-## Why use it?
+Most generators dump folders once, then disappear. stackchain stays as a **dev dependency** so you can:
 
-| Pain | How stackchain helps |
-| --- | --- |
-| Boilerplate for every feature | Vertical slices generate layered files + tests |
-| Inconsistent folder layouts across the team | One `architecture` key for everyone |
-| Forgetting to register routes / DI | `sync` and `feature` update managed regions |
-| Changing Riverpod → Bloc mid-project | `migrate --state bloc` (rewrites bootstrap too) |
-| Renaming / removing a slice | `rename` / `remove` keep yaml + router + DI aligned |
-| Stale generated deps | `upgrade` refreshes inferred packages + lockfile |
-
-## What problems does it solve?
-
-- **Slow start** — skip hand-building `app/`, `core/`, router, DI, network, and storage.
-- **Feature sprawl** — add slices that match your chosen architecture and state library.
-- **Regeneration fear** — smart merge keeps custom code outside markers.
-- **Stack lock-in** — migrate architecture/state/routing/DI/network intentionally.
-- **Silent quality drift** — gate + optional `strict_quality`.
-
-## Who should use it?
-
-- Flutter developers building apps beyond a single screen
-- Teams that want a shared baseline (presets + CI workflow generation)
-- Maintainers who expect the stack to change over months/years
-
-## When you should not use it
-
-- Throwaway prototypes with no need for structure
-- Codebases that forbid any codegen touching `lib/`
-- Architectures outside `feature_first`, `clean`, `mvvm`, `mvc`
-
-<Aside type="tip">
-You need an existing Flutter app (`flutter create`). stackchain scaffolds into a real project — it does not replace `flutter create`.
-</Aside>
-
-## Core concepts
-
-| Concept | Meaning |
-| --- | --- |
-| **Preset** | Named blueprint (`production_bloc`, …) that expands into defaults; explicit YAML keys win |
-| **Vertical slice** | A feature folder plus router/DI/tests wiring |
-| **Managed region** | Code between `// <stackchain:ID>` and `// </stackchain:ID>` that sync can rewrite |
-| **Lockfile** | `.stackchain/lock.yaml` records the last generated stack fingerprint |
-| **Brick** | Template under package `bricks/` or project `.stackchain/bricks/` for `make` / `new` |
-| **Quality gate** | Post-generate checks; `doctor` runs the gate alone |
+- **Add a feature** — files, routes, DI, and tests in one command
+- **Rename or remove** — without leftover routes or DI registrations
+- **Change stack later** — e.g. Riverpod → Bloc with `migrate`
+- **Keep custom code** — only marked regions are rewritten
 
 ## Mental model
 
 ```text
-stackchain.yaml  →  CLI  →  templates + bricks  →  lib/ + pubspec
-                              ↓
-                     smart merge (regions only)
-                              ↓
-                     quality gate + lock.yaml
+stackchain.yaml  →  init / feature / sync  →  your Flutter app
 ```
 
-Continue with [Installation](/stackchain-docs/getting-started/installation/) or dive into [How it works](/stackchain-docs/guides/how-it-works/).
+You edit YAML (or pick a preset). The CLI generates and wires the project. You write business logic outside the markers.
+
+<Aside type="tip">
+Create the Flutter app first with `flutter create`. stackchain scaffolds *into* it — it does not replace `flutter create`.
+</Aside>
+
+## Next
+
+[Install](/stackchain-docs/getting-started/installation/) → [Quick start](/stackchain-docs/getting-started/quick-start/)

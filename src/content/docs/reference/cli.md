@@ -26,18 +26,18 @@ No command ⇒ `init`.
 | --- | --- |
 | `help` | `[command]` | |
 | `init` | | Full scaffold |
-| `feature` | `<name>` or `--name` | Vertical slice |
-| `add` | `<name>` | Alias of feature |
-| `remove` | `<name>` or `--name` | Delete feature + rewire |
-| `rename` | `<from> <to>` or `--from` / `--to` | Rename feature + rewire |
-| `sync` | | Region merge |
-| `upgrade` | | Deps + sync + lock + gate |
-| `migrate` | stack flags | Evolve stack (shell + presentation + tests) |
-| `doctor` | | Gate only |
-| `presets` | | List IDs |
-| `make` | `<type> <name>` | `feature\|page\|widget\|service` |
-| `list` | | Bricks |
-| `new` | `<brick_name>` | Custom brick |
+| `feature` | `<name>` | Add a feature |
+| `add` | `<name>` | Same as feature |
+| `remove` | `<name>` | Delete a feature |
+| `rename` | `<from> <to>` | Rename a feature |
+| `sync` | | Re-wire routes & DI |
+| `upgrade` | | Refresh deps |
+| `migrate` | stack flags | Switch stack |
+| `doctor` | | Health check |
+| `presets` | | List presets |
+| `make` | `<type> <name>` | page / widget / service |
+| `list` | | List generators |
+| `new` | `<name>` | Custom generator |
 
 ### migrate flags
 

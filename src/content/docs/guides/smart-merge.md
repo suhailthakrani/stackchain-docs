@@ -1,42 +1,32 @@
 ---
-title: Smart merge and regeneration
-description: How stackchain preserves hand-written code using managed regions and merge engines.
+title: Your code stays safe
+description: How stackchain updates router and DI without overwriting your work.
 ---
 
 ## Markers
 
+Generated files use markers like this:
+
 ```dart
 // <stackchain:routes>
-// generated
+GoRoute(path: AppRoutes.home, ...),
 // </stackchain:routes>
 ```
 
-Known IDs: `routes`, `core`, `features`.
+`sync`, `feature`, `upgrade`, and `migrate` replace **only** what is between the markers.
 
-## Engines
+## Rules of thumb
 
-| Component | Role |
-| --- | --- |
-| `RegionMerger` | Replace region bodies only |
-| `SmartFileMerger` | Merge missing Dart imports |
-| `ProjectSync` | Router + DI sync entrypoint |
-
-## Commands that merge
-
-- `sync`
-- `feature` / `add`
-- `upgrade`
-- `migrate`
-- `make page` (auto-sync)
+1. **Don't put custom logic inside markers** — it will be overwritten on the next sync.
+2. **Write your code outside markers** — or in your own files.
+3. **Use `--dry-run`** before big changes (`migrate`, `--overwrite`).
 
 ## Overwrite vs merge
 
-| Flag / mode | Effect |
+| Mode | Effect |
 | --- | --- |
-| default write | Skip existing files |
-| `--overwrite` / `-f` | Replace whole files |
-| region merge | Replace only marker interiors |
+| Default | Skip files that already exist |
+| `--overwrite` | Replace whole files |
+| Region merge | Replace only marker interiors |
 
-## Best practice
-
-Never hand-edit inside markers if you plan to re-sync. Add companion methods, wrappers, or unmarked sections instead.
+That's it. Your business logic in `domain/`, `data/`, and unmarked presentation code stays yours.

@@ -1,6 +1,6 @@
 ---
-title: Storage overview
-description: SharedPreferences, secure storage, and Hive options in stackchain.
+title: Storage
+description: SharedPreferences, secure storage, and Hive.
 ---
 
 ```yaml
@@ -10,17 +10,10 @@ stackchain:
     - secure_storage
 ```
 
-| Value | Package |
+| Value | For |
 | --- | --- |
-| `shared_preferences` | `shared_preferences` |
-| `secure_storage` | `flutter_secure_storage` |
-| `hive` | `hive` + `hive_flutter` |
+| `shared_preferences` | Simple key/value |
+| `secure_storage` | Tokens / secrets (recommended) |
+| `hive` | Local structured data |
 
-**Default:** `[shared_preferences, secure_storage]`.
-
-Always generated:
-
-- `lib/core/storage/storage_keys.dart`
-- `lib/core/storage/cache_manager.dart`
-
-`SessionService` uses secure storage + prefs when present.
+Default: prefs + secure storage. Session uses secure storage when present.

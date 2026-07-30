@@ -1,55 +1,27 @@
 ---
 title: init
-description: Scaffold a full Flutter project from stackchain.yaml — app shell, core, features, deps, lockfile, and quality gate.
+description: Scaffold your Flutter app from stackchain.yaml.
 ---
-
-## Description
-
-`init` performs a full project scaffold from `stackchain.yaml` (or defaults if missing).
 
 ## Usage
 
 ```bash
-dart run stackchain init [options]
-dart run stackchain:init [options]
-```
-
-No subcommand is equivalent to `init`.
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| `--overwrite`, `-f` | Overwrite existing generated files |
-| `--dry-run` | Preview actions without writing |
-| `--verbose`, `-v` | Verbose logging |
-| `--skip-analyze` | Skip analyze step in quality gate |
-| `--path`, `-p` | Project root |
-
-## Pipeline
-
-1. Detect Flutter app via `pubspec.yaml`
-2. Load / parse config (defaults if absent)
-3. Ensure feature directories
-4. Write templates: app, router, core, features, modules
-5. Merge pubspec dependencies
-6. Write default `stackchain.yaml` if missing
-7. Remove stock `test/widget_test.dart`
-8. Write `.stackchain/lock.yaml`
-9. Run quality gate
-
-## Overwrite policy
-
-Existing files are **skipped** unless `--overwrite` / `-f` is set. The stock counter `main.dart` may be force-replaced as part of baseline setup.
-
-## Examples
-
-```bash
 dart run stackchain init
+dart run stackchain init --dry-run
 dart run stackchain init --overwrite
-dart run stackchain init --dry-run -v
 ```
 
-## Expected output
+## What it does
 
-You should see file write/skip logs, dependency merges, lockfile update, and a quality gate summary. On success, `lib/app`, `lib/core`, and `lib/features` exist and the app boots with `configureDependencies` + `App`.
+1. Reads `stackchain.yaml` (or applies defaults)
+2. Creates `lib/app`, `lib/core`, `lib/features`
+3. Adds the right packages to `pubspec.yaml`
+4. Replaces the counter `main.dart`
+5. Writes `.stackchain/lock.yaml`
+6. Runs a health check
+
+## Tips
+
+- Existing files are **skipped** unless you pass `--overwrite`
+- No config file? Defaults are fine — a starter YAML is written for you
+- Always safe to preview: `--dry-run`

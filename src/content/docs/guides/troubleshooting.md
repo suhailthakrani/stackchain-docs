@@ -1,58 +1,44 @@
 ---
 title: Troubleshooting
-description: Fix common stackchain init, sync, analyze, and migrate issues.
+description: Fix common stackchain issues.
 ---
 
-## init says not a Flutter app
+## "Not a Flutter app"
 
-Ensure `pubspec.yaml` contains Flutter SDK dependencies and you are in the project root (or pass `--path`).
+Run from the project root (where `pubspec.yaml` is), or pass `--path`.
 
 ## Files not updating
 
-Default behavior skips existing files. Use `--overwrite` or rely on `sync` for managed regions.
+Existing files are skipped by default. Use `--overwrite`, or `sync` for router/DI markers.
 
-## Analyze failures in the gate
+## Analyze failures
 
 ```bash
 dart run stackchain doctor --skip-analyze
-# or temporarily
-strict_quality: false
 ```
 
-Fix analyze issues, then re-enable strict mode for production.
+Or set `strict_quality: false` temporarily, fix issues, then turn it back on.
 
-## GetX routing/DI not selected
+## GetX routing/DI wrong
 
-Set them explicitly, or omit them while `state_management: getx` so smart defaults apply.
+Set them explicitly, or omit both while `state_management: getx` so defaults kick in.
 
-## AutoRoute / Injectable not generating
+## AutoRoute / Injectable
 
-Run build_runner after pub get:
+After `pub get`:
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-## Migrate removed files I still needed
+## Migrate removed something I needed
 
-Re-run with `--keep-old` from a clean commit, or restore from VCS and migrate again with `--keep-old`.
-
-## Migrate left ProviderScope / old state imports
-
-Upgrade to **1.1.3+**. `migrate` refreshes `bootstrap.dart` and app shell for the target stack. Re-run:
-
-```bash
-dart run stackchain migrate --state bloc
-```
+Restore from git and re-run with `--keep-old`.
 
 ## Feature name rejected
 
-Use snake_case: `^[a-z][a-z0-9_]*$` — e.g. `user_profile`, not `UserProfile`.
+Use snake_case: `user_profile`, not `UserProfile`.
 
-## Cannot remove the last feature
+## Can't remove the last feature
 
-Add another feature first, then `remove` the one you no longer need.
-
-## Rename target already exists
-
-Choose a free name, or `remove` the target feature first.
+Add another feature first, then remove the one you don't want.

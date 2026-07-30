@@ -1,63 +1,40 @@
 ---
-title: feature / add
-description: Generate a vertical feature slice and wire router, DI, tests, lockfile, and quality gate.
+title: feature
+description: Add a feature with files, routes, DI, and tests in one command.
 ---
-
-## Description
-
-`feature` (alias `add`) creates a vertical slice for a named feature: folders/files for your architecture + state management, then syncs router and DI managed regions, updates the lockfile, and runs the quality gate.
-
-Also see:
-
-- [remove](/stackchain-docs/cli/remove/) — tear a feature down
-- [rename](/stackchain-docs/cli/rename/) — rename a feature end-to-end
 
 ## Usage
 
 ```bash
-dart run stackchain feature <name>
-dart run stackchain feature --name <name>
-dart run stackchain add <name>
+dart run stackchain feature auth
+dart run stackchain add notifications   # same thing
+dart run stackchain feature onboarding --dry-run
 ```
 
-Feature names must be snake_case: `^[a-z][a-z0-9_]*$`.
-
-## Options
-
-| Option | Description |
-| --- | --- |
-| `--name`, `-n` | Feature name (alternative to positional) |
-| `--overwrite`, `-f` | Overwrite existing generated files |
-| `--dry-run` | Preview only |
-| `--skip-analyze` | Skip analyze in gate |
+Names must be snake_case: `auth`, `user_profile`, `notifications`.
 
 ## What it does
 
-1. Appends the feature to `stackchain.yaml` if new
-2. Generates feature files (+ recipe extras)
-3. Runs `ProjectSync` (router + DI regions)
-4. Updates `.stackchain/lock.yaml`
-5. Runs quality gate
-
-For layered + `get_it`, DI registers the full feature graph: remote datasource, repository, use case, and state class (`Bloc` / `Cubit` / `Controller`).
+1. Adds the name to `stackchain.yaml`
+2. Creates the feature folder for your architecture + state library
+3. Wires routes and DI
+4. Adds tests
+5. Runs a health check
 
 ## Named recipes
 
-| Name | Extra behavior |
-| --- | --- |
-| `auth` | Richer auth extras (form widget, session/guards integration, tests) |
-| `settings` | Settings-oriented extras + tests |
-| `profile` | Profile-oriented extras + tests |
-| *other* | Baseline slice + smoke/type tests |
+Some names get richer extras:
 
-## Examples
+| Name | Extra |
+| --- | --- |
+| `auth` | Form, session/guards, richer tests |
+| `settings` | Settings-oriented extras |
+| `profile` | Profile-oriented extras |
+| anything else | Solid baseline + smoke tests |
+
+## Related
 
 ```bash
-dart run stackchain feature auth
-dart run stackchain add notifications
-dart run stackchain feature --name onboarding --dry-run
+dart run stackchain rename profile account
+dart run stackchain remove auth
 ```
-
-## Expected output
-
-New folders under `lib/features/<name>/`, updated route/DI regions, YAML feature list update, and a passing (or reported) quality gate.

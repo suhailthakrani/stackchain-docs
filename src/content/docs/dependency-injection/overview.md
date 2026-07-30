@@ -1,6 +1,6 @@
 ---
-title: Dependency injection overview
-description: GetIt, Injectable, and GetX DI options in stackchain.
+title: Dependency injection
+description: get_it, injectable, and getx.
 ---
 
 ```yaml
@@ -8,29 +8,10 @@ stackchain:
   di: get_it
 ```
 
-| Value | Packages |
+| Value | Notes |
 | --- | --- |
-| `get_it` | `get_it` (default) |
-| `injectable` | `injectable` + `injectable_generator` |
-| `getx` | `get` |
+| `get_it` | Default |
+| `injectable` | Needs `build_runner` after generate |
+| `getx` | Default when state is GetX |
 
-Primary file: `lib/core/di/injection.dart`
-
-Managed regions:
-
-| ID | Purpose |
-| --- | --- |
-| `core` | Core registrations (session, network, storage, …) |
-| `features` | Per-feature datasource / repository / use case / state |
-
-```dart
-// <stackchain:core>
-// ...
-// </stackchain:core>
-
-// <stackchain:features>
-// ...
-// </stackchain:features>
-```
-
-`feature`, `remove`, `rename`, `sync`, and `migrate` all keep these regions aligned with `stackchain.yaml`.
+Registrations live in `lib/core/di/injection.dart` inside markers. `feature` / `sync` / `migrate` keep them up to date.

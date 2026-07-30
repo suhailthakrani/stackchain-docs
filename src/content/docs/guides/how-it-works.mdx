@@ -1,50 +1,34 @@
 ---
 title: How it works
-description: Internal pipeline — config parsing, templates, bricks, smart merge, lockfile, and quality gate.
+description: The simple pipeline behind stackchain.
 ---
-
-import { Aside } from '@astrojs/starlight/components';
 
 ![How stackchain works](/stackchain-docs/how-it-works.svg)
 
-## 1. Configuration
+## 1. You declare a stack
 
-`YamlParser` reads `stackchain.yaml` (or `flutter_starter` legacy root). `PresetRegistry.expand` applies presets; **explicit keys win**.
+In `stackchain.yaml` (or a preset): architecture, state, routing, DI, network, features.
 
-## 2. Generation
+## 2. Commands generate & wire
 
-`ProjectGenerator` orchestrates init:
-
-1. Flutter app detection
-2. Config load
-3. Feature directories
-4. Template writes (app / router / core / features / modules)
-5. Pubspec dependency merge
-6. Default YAML write if missing
-7. Stock test cleanup
-8. Lockfile
-9. Quality gate
-
-## 3. Templates vs bricks
-
-| Concern | Mechanism |
+| Command | What it does |
 | --- | --- |
-| App shell, core, features on init | Dart template classes |
-| `make page|widget|service` | BrickEngine + `.tpl` |
-| Custom org generators | `.stackchain/bricks` |
+| `init` | Full app scaffold |
+| `feature` | Add a feature + wire routes/DI |
+| `sync` | Re-wire routes/DI only |
+| `migrate` | Switch stack pieces |
+| `upgrade` | Refresh dependencies |
 
-## 4. Regeneration & preservation
+## 3. Only marked regions are rewritten
 
-See [Smart merge](/stackchain-docs/guides/smart-merge/). Hand code outside `// <stackchain:…>` markers is preserved. State/routing/DI `migrate` rewrites presentation (and bootstrap/app/router/DI); domain/data survive unless architecture itself changes.
+```dart
+// <stackchain:routes>
+// …generated…
+// </stackchain:routes>
+```
 
-## 5. Lockfile
+Code **outside** markers is never touched. Details: [Your code stays safe](/stackchain-docs/guides/smart-merge/).
 
-`.stackchain/lock.yaml` records the stack fingerprint for upgrade/migrate awareness.
+## 4. Quality check
 
-## 6. Quality gate
-
-`doctor` and post-generate gates verify structure and security baseline; `strict_quality` can fail on analyze.
-
-<Aside type="tip">
-Treat managed regions as generated API surface. Put custom logic in unmarked code or dedicated files.
-</Aside>
+Every generate can run a health check (`doctor`). Optional `strict_quality: true` fails on analyze issues.

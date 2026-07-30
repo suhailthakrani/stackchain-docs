@@ -1,6 +1,6 @@
 ---
-title: Routing overview
-description: stackchain routing options — go_router, auto_route, navigator, and getx.
+title: Routing
+description: go_router, auto_route, navigator, and getx.
 ---
 
 ```yaml
@@ -8,21 +8,11 @@ stackchain:
   routing: go_router
 ```
 
-| Value | Packages |
+| Value | Notes |
 | --- | --- |
-| `go_router` | `go_router` (default) |
-| `auto_route` | `auto_route` + `auto_route_generator` (dev) |
-| `navigator` | none extra — `ProjectSync` skips router file sync |
-| `getx` | `get` |
+| `go_router` | Default. Auth redirects when `auth` feature exists |
+| `auto_route` | Needs `build_runner` after generate |
+| `navigator` | Basic Navigator 1.0 |
+| `getx` | Default when state is GetX |
 
-Generated under `lib/app/router/`:
-
-```text
-app_routes.dart
-route_guards.dart
-app_router.dart
-```
-
-Managed region id: `routes` (`// <stackchain:routes>…// </stackchain:routes>`).
-
-When an `auth` feature exists, route guards + redirect patterns are wired for secure session flows.
+Routes live under `lib/app/router/` and update via markers when you add/remove features.
