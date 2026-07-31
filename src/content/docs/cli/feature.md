@@ -35,6 +35,9 @@ Some names get richer extras:
 ## Related
 
 ```bash
+dart run stackchain test auth          # full unit + widget + integration suite
 dart run stackchain rename profile account
 dart run stackchain remove auth
 ```
+
+Custom methods in generated classes go in `// <stackchain:custom>` — see [Your code stays safe](/stackchain-docs/guides/smart-merge/).

@@ -15,6 +15,7 @@ No command? Same as `init`.
 | --- | --- |
 | `init` | Scaffold the whole app |
 | `feature <name>` | Add a feature (files + routes + DI + tests) |
+| `test <feature>` | Generate unit / widget / integration tests |
 | `rename <from> <to>` | Rename a feature |
 | `remove <name>` | Remove a feature |
 | `sync` | Re-wire router & DI |
@@ -37,11 +38,11 @@ No command? Same as `init`.
 | Flag | Meaning |
 | --- | --- |
 | `--dry-run` | Preview, don't write |
-| `--overwrite` / `-f` | Overwrite existing files |
+| `--overwrite` / `-f` | Overwrite / refresh existing files |
 | `--skip-analyze` | Skip analyzer in the quality check |
 | `--path` / `-p` | Project root (default: current folder) |
 
 ```bash
-dart run stackchain help migrate
-dart run stackchain init --dry-run
+dart run stackchain help test
+dart run stackchain test auth --dry-run
 ```

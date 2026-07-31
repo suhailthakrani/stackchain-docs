@@ -24,7 +24,7 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 **stackchain** turns a few lines of YAML into a runnable Flutter app — with architecture, state management, routing, and DI already wired. Add features as you go. Your hand-written code stays safe.
 
-<p class="version-badge" style="margin: 1rem 0 1.5rem">v1.1.3 · MIT</p>
+<p class="version-badge" style="margin: 1rem 0 1.5rem">v1.2.0 · MIT</p>
 
 ## 30-second start
 
@@ -55,8 +55,11 @@ Or set each piece yourself: `architecture`, `state_management`, `routing`, `di`,
   <Card title="Add features" icon="add-document">
     `feature auth` creates files, routes, DI, and tests in one command.
   </Card>
+  <Card title="Generate tests" icon="document">
+    `test auth` adds unit, widget, and integration scaffolds — custom tests stay yours.
+  </Card>
   <Card title="Stay in sync" icon="setting">
-    Router and DI update automatically. Code outside markers is never touched.
+    Router and DI update automatically. `// <stackchain:custom>` survives migrate.
   </Card>
   <Card title="Change later" icon="approve-check">
     Switch Bloc → Cubit (or a preset) with `migrate`. Preview with `--dry-run`.
@@ -68,6 +71,6 @@ Or set each piece yourself: `architecture`, `state_management`, `routing`, `di`,
 <CardGrid>
   <LinkCard title="Quick start" href="/stackchain-docs/getting-started/quick-start/" description="From flutter create to a running app." />
   <LinkCard title="Configuration" href="/stackchain-docs/getting-started/configuration/" description="stackchain.yaml — the important fields only." />
-  <LinkCard title="Commands" href="/stackchain-docs/cli/overview/" description="init, feature, sync, migrate, and the rest." />
+  <LinkCard title="Commands" href="/stackchain-docs/cli/overview/" description="init, feature, test, sync, migrate, and the rest." />
   <LinkCard title="Examples" href="/stackchain-docs/guides/examples/" description="Copy-paste stacks for Bloc, Riverpod, GetX." />
 </CardGrid>

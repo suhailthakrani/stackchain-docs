@@ -28,6 +28,7 @@ No command ⇒ `init`.
 | `init` | | Full scaffold |
 | `feature` | `<name>` | Add a feature |
 | `add` | `<name>` | Same as feature |
+| `test` | `<feature>` or `--all` | Unit / widget / integration tests |
 | `remove` | `<name>` | Delete a feature |
 | `rename` | `<from> <to>` | Rename a feature |
 | `sync` | | Re-wire routes & DI |
@@ -42,6 +43,10 @@ No command ⇒ `init`.
 ### migrate flags
 
 `--architecture` `--state` `--routing` `--di` `--network` `--preset` `--keep-old` `--dry-run` `--skip-analyze`
+
+### test flags
+
+`--type/-t unit,widget,integration` `--all/-a` `--overwrite` `--dry-run` `--skip-analyze` `--name/-n`
 
 ### rename flags
 

@@ -58,9 +58,11 @@ stackchain:
 
 ```bash
 dart run stackchain feature notifications
+dart run stackchain test notifications
 dart run stackchain rename profile account
 dart run stackchain remove notifications
 dart run stackchain migrate --state cubit --dry-run
 dart run stackchain migrate --state cubit
+dart run stackchain test --all --overwrite
 dart run stackchain upgrade
 ```

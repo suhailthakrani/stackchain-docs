@@ -5,7 +5,7 @@ description: Common questions about stackchain.
 
 ## Is this a one-shot generator?
 
-No. Keep it as a dev dependency. Use `feature`, `sync`, `upgrade`, and `migrate` over time.
+No. Keep it as a dev dependency. Use `feature`, `test`, `sync`, `upgrade`, and `migrate` over time.
 
 ## Does it replace flutter create?
 
@@ -13,7 +13,15 @@ No. Create the app first, then run stackchain inside it.
 
 ## Will sync delete my code?
 
-Only code inside `// <stackchain:…>` markers is replaced. Everything else is preserved.
+Only code inside managed markers (`routes`, `core`, `features`, `generated`) is replaced. Put your methods in `// <stackchain:custom>` or in `*_custom_test.dart`.
+
+## Where do I put custom tests?
+
+```bash
+dart run stackchain test auth
+```
+
+Then edit `test/features/auth_custom_test.dart` — that file is never overwritten.
 
 ## Can I rename or remove a feature?
 
@@ -35,8 +43,8 @@ dart run stackchain migrate --state cubit --dry-run
 dart run stackchain migrate --state cubit
 ```
 
-Domain/data layers stay; presentation and wiring are regenerated. Commit first.
+Domain/data stay. Custom methods in `// <stackchain:custom>` are ported (e.g. Bloc → Cubit). Commit first.
 
 ## Which version is this docs for?
 
-**stackchain 1.1.3**
+**stackchain 1.2.0**

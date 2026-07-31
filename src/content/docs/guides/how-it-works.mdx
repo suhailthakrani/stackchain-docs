@@ -15,6 +15,7 @@ In `stackchain.yaml` (or a preset): architecture, state, routing, DI, network, f
 | --- | --- |
 | `init` | Full app scaffold |
 | `feature` | Add a feature + wire routes/DI |
+| `test` | Unit / widget / integration tests |
 | `sync` | Re-wire routes/DI only |
 | `migrate` | Switch stack pieces |
 | `upgrade` | Refresh dependencies |
@@ -25,9 +26,13 @@ In `stackchain.yaml` (or a preset): architecture, state, routing, DI, network, f
 // <stackchain:routes>
 // …generated…
 // </stackchain:routes>
+
+// <stackchain:custom>
+// …your methods — preserved across migrate…
+// </stackchain:custom>
 ```
 
-Code **outside** markers is never touched. Details: [Your code stays safe](/stackchain-docs/guides/smart-merge/).
+Code outside managed markers (and inside `custom`) is yours. Details: [Your code stays safe](/stackchain-docs/guides/smart-merge/).
 
 ## 4. Quality check
 

@@ -33,7 +33,15 @@ dart run build_runner build --delete-conflicting-outputs
 
 ## Migrate removed something I needed
 
-Restore from git and re-run with `--keep-old`.
+Restore from git and re-run with `--keep-old`. Look for `*.stackchain.bak` backups if a legacy unmarked file was replaced.
+
+## Custom code disappeared after migrate
+
+Put methods inside `// <stackchain:custom>…// </stackchain:custom>` in presentation/state classes. Outside that region (or inside `generated` / `routes`) gets rewritten.
+
+## test says unknown feature
+
+Add it first: `dart run stackchain feature auth`, then `dart run stackchain test auth`.
 
 ## Feature name rejected
 

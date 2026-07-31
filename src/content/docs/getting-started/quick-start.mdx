@@ -62,7 +62,17 @@ import { Aside, Steps } from '@astrojs/starlight/components';
 dart run stackchain feature auth
 ```
 
-Creates the feature folder, wires routes + DI, adds tests.
+Creates the feature folder, wires routes + DI, adds a default unit test.
+
+## Full test suite
+
+```bash
+dart run stackchain test auth
+# or every feature:
+dart run stackchain test --all
+```
+
+Custom assertions go in `test/features/auth_custom_test.dart` (never overwritten).
 
 ## What you get
 
@@ -82,4 +92,5 @@ Preview without writing: `dart run stackchain init --dry-run`
 
 - [Configuration](/stackchain-docs/getting-started/configuration/) — YAML fields
 - [Commands](/stackchain-docs/cli/overview/) — everyday CLI usage
+- [test](/stackchain-docs/cli/test/) — unit / widget / integration tests
 - [Examples](/stackchain-docs/guides/examples/) — copy-paste stacks

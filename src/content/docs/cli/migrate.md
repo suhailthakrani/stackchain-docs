@@ -33,9 +33,12 @@ dart run stackchain migrate --routing go_router --di get_it
 - Presentation, bootstrap, router, DI, and feature tests are regenerated
 - Domain/data layers stay (unless you change architecture)
 - Obsolete packages are dropped (unless `--keep-old`)
+- Code in `// <stackchain:custom>` is preserved and ported across state changes
+- Legacy unmarked customized files get a `*.stackchain.bak` backup
 
 ## Tips
 
 1. Commit first.
 2. Always `--dry-run` once.
-3. Custom UI you put inside generated presentation files will be rewritten — keep custom widgets in unmarked files.
+3. Keep custom methods inside `// <stackchain:custom>` (or separate unmarked files).
+4. Re-run `dart run stackchain test --all` after migrate if you want a full suite refresh.
