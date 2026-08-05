@@ -21,7 +21,7 @@ Or in `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  stackchain: ^1.2.0
+  stackchain: ^1.3.1
 ```
 
 Then `flutter pub get`.

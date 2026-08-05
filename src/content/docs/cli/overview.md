@@ -15,13 +15,15 @@ No command? Same as `init`.
 | --- | --- |
 | `init` | Scaffold the whole app |
 | `feature <name>` | Add a feature (files + routes + DI + tests) |
+| `crud <entity>` | Feature + list tile, form, and form tests |
 | `test <feature>` | Generate unit / widget / integration tests |
+| `stub <feature>` | Placeholder tests for `// <stackchain:custom>` methods |
 | `rename <from> <to>` | Rename a feature |
 | `remove <name>` | Remove a feature |
 | `sync` | Re-wire router & DI |
 | `upgrade` | Refresh dependencies |
 | `migrate` | Switch architecture / state / routing / DI / preset |
-| `doctor` | Health check only |
+| `doctor [--fix]` | Health check; `--fix` syncs + refreshes lock |
 | `presets` | List built-in presets |
 
 ## Also useful
@@ -45,4 +47,5 @@ No command? Same as `init`.
 ```bash
 dart run stackchain help test
 dart run stackchain test auth --dry-run
+dart run stackchain doctor --fix
 ```

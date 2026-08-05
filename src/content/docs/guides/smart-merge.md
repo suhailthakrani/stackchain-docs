@@ -13,7 +13,19 @@ GoRoute(path: AppRoutes.home, ...),
 // </stackchain:routes>
 ```
 
-`sync` / `feature` / `upgrade` / `migrate` replace **only** the inside.
+`sync` / `feature` / `upgrade` replace **only** the inside. State-only `migrate` also leaves code outside these markers alone.
+
+### Page UI (state-bound)
+
+```dart
+Widget build(BuildContext context) {
+  // <stackchain:generated>
+  return BlocProvider(/* … */);
+  // </stackchain:generated>
+}
+```
+
+Refreshed on migrate and `feature --overwrite` so pages match the new state API.
 
 ### Your methods (presentation)
 
@@ -33,11 +45,21 @@ Put custom methods here in Bloc / Cubit / Page / Controller classes. They surviv
 // </stackchain:generated>
 ```
 
-Refresh keeps anything **outside** these markers. Your permanent custom tests live in:
+Refresh keeps anything **outside** these markers. Permanent custom tests:
 
 ```text
 test/features/<feature>_custom_test.dart   # never overwritten
 ```
+
+## What migrate rewrites entirely
+
+These app-shell files are regenerated for the target stack (not region-merged):
+
+- `lib/bootstrap.dart`
+- `lib/main.dart` / `main_*.dart`
+- `lib/app/app.dart`
+
+Don't put one-off business logic there.
 
 ## Rules of thumb
 
@@ -50,8 +72,8 @@ test/features/<feature>_custom_test.dart   # never overwritten
 
 | Mode | Effect |
 | --- | --- |
-| Default | Skip files that already exist (where applicable) |
-| `--overwrite` | Refresh scaffolds; custom regions & `*_custom_test` stay |
-| Region merge | Replace only marked interiors |
+| Default | Soft-merge markers; skip unmarked customized files |
+| `--overwrite` / migrate presentation | Refresh `lib/` scaffolds; `custom` regions & `*_custom_test` stay |
+| Region merge (`sync`) | Replace only marked interiors |
 
 Domain / data layers stay yours unless you change architecture.

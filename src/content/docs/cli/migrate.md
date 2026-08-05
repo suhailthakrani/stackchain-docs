@@ -30,15 +30,23 @@ dart run stackchain migrate --routing go_router --di get_it
 
 ## What changes
 
-- Presentation, bootstrap, router, DI, and feature tests are regenerated
-- Domain/data layers stay (unless you change architecture)
-- Obsolete packages are dropped (unless `--keep-old`)
-- Code in `// <stackchain:custom>` is preserved and ported across state changes
-- Legacy unmarked customized files get a `*.stackchain.bak` backup
+| Area | Behavior |
+| --- | --- |
+| **Presentation pages + state classes** | Rewritten for the new API (Bloc → Cubit, etc.). `// <stackchain:custom>` is preserved and ported |
+| **App shell** (`bootstrap`, `main`, `app.dart`) | Regenerated for the target stack (e.g. drops `ProviderScope` when leaving Riverpod) |
+| **Router / DI** | State-only migrates: markers updated via sync — code **outside** markers stays. Routing/DI-type changes: full template refresh |
+| **Domain / data** | Kept (unless architecture changes) |
+| **Packages** | Target deps added; obsolete ones dropped (unless `--keep-old`) |
+| **Tests** | Feature scaffolds refreshed; `*_custom_test.dart` never overwritten |
+
+## Honest limits
+
+- Do **not** put irreplaceable logic in `bootstrap.dart` / `main*.dart` / `app.dart` — migrate rewrites those files for the new stack.
+- Put feature logic in `// <stackchain:custom>` or your own unmarked files under `domain/` / `data/`.
+- After migrate, if anything looks stale: `dart run stackchain feature <name> --overwrite` (pages refresh; custom regions stay).
 
 ## Tips
 
 1. Commit first.
 2. Always `--dry-run` once.
-3. Keep custom methods inside `// <stackchain:custom>` (or separate unmarked files).
-4. Re-run `dart run stackchain test --all` after migrate if you want a full suite refresh.
+3. Re-run `dart run stackchain test --all` after migrate if you want a full suite refresh.

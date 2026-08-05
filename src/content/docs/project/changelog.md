@@ -5,6 +5,21 @@ description: Release history for the stackchain Flutter CLI package.
 
 Documentation tracks the published package. Source of truth: package `CHANGELOG.md`.
 
+## 1.3.1
+
+- **Fix** migrate / `feature --overwrite`: rewrite presentation pages for the new state API (Bloc → Cubit, etc.) while preserving `// <stackchain:custom>`
+- **Fix** quality gate: `dart analyze` errors/warnings always fail the gate (no longer “non-blocking”)
+- **Fix** `production_riverpod` (and any `localization: true`): add `flutter_localizations` SDK dep, enable `generate: true`, stop pinning conflicting `intl: ^0.19.0`
+- **Fix** migrate shell: state-only migrates no longer wipe router/DI files — sync updates markers and keeps hand-written code outside them
+- Page templates wrap UI in `// <stackchain:generated>` for safe soft-merge refreshes
+
+## 1.3.0
+
+- Richer shippable recipes: deepen auth (form + widget test) and settings (preferences + persistence test); add onboarding, notifications, search
+- Add `crud <entity>` for list tile + form + form tests on top of a vertical slice
+- Add `stub <feature>` (and `test --stub-custom`) to scan `// <stackchain:custom>` and append placeholder tests
+- Add `doctor --fix`: detect marker/lock/orphan drift and auto sync + refresh lockfile
+
 ## 1.2.0
 
 - Add `test <feature>` — unit, widget, and integration tests (`--type`, `--all`, `--overwrite`)
@@ -32,16 +47,18 @@ Documentation tracks the published package. Source of truth: package `CHANGELOG.
 
 ## 1.1.1
 
-- Migrate cleanup improvements
-- Baseline ensurer fixes
+- `migrate` cleans up old state files and unused packages (`--keep-old` to keep them)
+- Fix `migrate` / `upgrade` / `sync` on older apps (SessionService, Dio, guards)
+- Fix package logo on pub.dev
 
 ## 1.1.0
 
 - `sync` / `upgrade` / `migrate` / `doctor` / `presets`
-- RxDart state management support
-- Smarter lifecycle tooling beyond one-shot init
+- `feature` wires router, DI, and tests
+- Quality gate on generate; secure session + guards; flavors; CI; RxDart
 
 ## 1.0.0
 
-- Initial generators for architectures, state, routing, DI, network, storage
-- Feature scaffolding and core app templates
+- Config-driven Flutter scaffolding via `stackchain.yaml`
+- Architectures, state, routing, DI, network options
+- Commands: `init`, `feature`, `make`, `list`, `new`

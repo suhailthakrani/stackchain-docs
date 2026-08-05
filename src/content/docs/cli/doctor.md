@@ -1,15 +1,24 @@
 ---
 title: doctor & presets
-description: Health check and built-in stack presets.
+description: Health check, auto-repair, and built-in stack presets.
 ---
 
 ## doctor
 
 ```bash
 dart run stackchain doctor
+dart run stackchain doctor --fix
 ```
 
-Runs the health check without generating files. Set `strict_quality: true` in YAML to fail generates on analyze issues.
+Runs the health check without generating files. Checks:
+
+- `.stackchain/lock.yaml` presence / drift
+- Missing feature markers
+- Orphan routes / DI registrations
+
+`--fix` auto-repairs what it can: syncs router/DI and refreshes the lockfile, then re-diagnoses.
+
+Set `strict_quality: true` in YAML to fail generates on analyze issues. The quality gate fails on `dart analyze` errors/warnings (infos are fatal only with `strict_quality`).
 
 ## presets
 
@@ -32,3 +41,5 @@ stackchain:
   preset: production_bloc
   features: [splash, auth, home]
 ```
+
+`production_riverpod` (and any config with `localization: true`) needs `flutter_localizations` + `generate: true` — stackchain 1.3.1+ wires that for you. Don't pin an old `intl`.

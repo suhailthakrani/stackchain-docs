@@ -43,8 +43,8 @@ dart run stackchain migrate --state cubit --dry-run
 dart run stackchain migrate --state cubit
 ```
 
-Domain/data stay. Custom methods in `// <stackchain:custom>` are ported (e.g. Bloc → Cubit). Commit first.
+Pages and state classes are rewritten for the new API. `// <stackchain:custom>` is ported. Domain/data stay. App shell (`bootstrap` / `main` / `app.dart`) is regenerated — don't put business logic there. Commit first.
 
 ## Which version is this docs for?
 
-**stackchain 1.2.0**
+**stackchain 1.3.1**

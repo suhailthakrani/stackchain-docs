@@ -28,13 +28,15 @@ No command ⇒ `init`.
 | `init` | | Full scaffold |
 | `feature` | `<name>` | Add a feature |
 | `add` | `<name>` | Same as feature |
+| `crud` | `<entity>` | Feature + list/form extras |
 | `test` | `<feature>` or `--all` | Unit / widget / integration tests |
+| `stub` | `<feature>` or `--all` | Placeholder tests for custom methods |
 | `remove` | `<name>` | Delete a feature |
 | `rename` | `<from> <to>` | Rename a feature |
 | `sync` | | Re-wire routes & DI |
 | `upgrade` | | Refresh deps |
 | `migrate` | stack flags | Switch stack |
-| `doctor` | | Health check |
+| `doctor` | `[--fix]` | Health check; `--fix` repairs |
 | `presets` | | List presets |
 | `make` | `<type> <name>` | page / widget / service |
 | `list` | | List generators |
@@ -46,7 +48,15 @@ No command ⇒ `init`.
 
 ### test flags
 
-`--type/-t unit,widget,integration` `--all/-a` `--overwrite` `--dry-run` `--skip-analyze` `--name/-n`
+`--type/-t unit,widget,integration` `--all/-a` `--overwrite` `--stub-custom` / `--no-stub-custom` `--dry-run` `--skip-analyze` `--name/-n`
+
+### stub flags
+
+`--all/-a` `--dry-run` `--name/-n`
+
+### doctor flags
+
+`--fix` `--skip-analyze`
 
 ### rename flags
 

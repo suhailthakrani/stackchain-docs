@@ -13,11 +13,25 @@ Existing files are skipped by default. Use `--overwrite`, or `sync` for router/D
 
 ## Analyze failures
 
+The quality gate **fails** when `dart analyze` exits non-zero. Fix the reported issues, then re-run.
+
 ```bash
-dart run stackchain doctor --skip-analyze
+dart run stackchain doctor
 ```
 
-Or set `strict_quality: false` temporarily, fix issues, then turn it back on.
+`strict_quality: true` also treats analyzer **infos** as fatal (`--fatal-infos`).
+
+## Localization / production_riverpod broken
+
+Need `flutter_localizations` (SDK) and `generate: true`. Run:
+
+```bash
+dart run stackchain upgrade
+flutter pub get
+flutter gen-l10n   # if needed
+```
+
+Do not pin an old `intl` (e.g. `^0.19.0`) — it conflicts with the Flutter SDK.
 
 ## GetX routing/DI wrong
 
@@ -37,7 +51,19 @@ Restore from git and re-run with `--keep-old`. Look for `*.stackchain.bak` backu
 
 ## Custom code disappeared after migrate
 
-Put methods inside `// <stackchain:custom>…// </stackchain:custom>` in presentation/state classes. Outside that region (or inside `generated` / `routes`) gets rewritten.
+- Feature logic → `// <stackchain:custom>` in presentation/state classes
+- Don't put irreplaceable code in `bootstrap.dart` / `main*.dart` / `app.dart` (those are rewritten)
+- Router/DI hand-written code **outside** markers survives state-only migrates
+
+## Pages still use old Bloc after migrate to Cubit
+
+Upgrade to **1.3.1+**. Then:
+
+```bash
+dart run stackchain migrate --state cubit
+# or heal one feature:
+dart run stackchain feature auth --overwrite
+```
 
 ## test says unknown feature
 

@@ -32,6 +32,17 @@ test/features/<feature>_custom_test.dart
 
 Put tests for **your** methods there.
 
+## Stub custom methods
+
+Scan `// <stackchain:custom>` and append failing placeholder tests to `*_custom_test.dart`:
+
+```bash
+dart run stackchain stub auth
+dart run stackchain stub --all
+```
+
+`test` also stubs by default (`--stub-custom`; use `--no-stub-custom` to skip).
+
 ## Options
 
 | Flag | Meaning |
@@ -39,6 +50,7 @@ Put tests for **your** methods there.
 | `--type`, `-t` | `unit`, `widget`, `integration` (comma-separated) |
 | `--all`, `-a` | Every feature in `stackchain.yaml` |
 | `--overwrite`, `-f` | Refresh scaffold files (custom_test untouched) |
+| `--stub-custom` | Stub custom methods (default on; `--no-stub-custom`) |
 | `--dry-run` | Preview only |
 | `--skip-analyze` | Skip analyzer in the quality check |
 

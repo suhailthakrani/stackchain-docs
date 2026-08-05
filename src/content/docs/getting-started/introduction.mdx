@@ -7,7 +7,7 @@ import { Aside } from '@astrojs/starlight/components';
 
 **stackchain** scaffolds a Flutter app from a simple YAML config — and keeps helping as the project grows.
 
-Version **1.2.0** · MIT · [pub.dev](https://pub.dev/packages/stackchain)
+Version **1.3.1** · MIT · [pub.dev](https://pub.dev/packages/stackchain)
 
 ## In one sentence
 
@@ -17,11 +17,12 @@ Write your preferred stack in `stackchain.yaml` → run `init` → get a real ap
 
 Most generators dump folders once, then disappear. stackchain stays as a **dev dependency** so you can:
 
-- **Add a feature** — files, routes, DI, and tests in one command
-- **Generate tests** — unit, widget, integration (`test auth`)
+- **Add a feature** — files, routes, DI, and tests in one command (`crud` for list/form slices)
+- **Generate tests** — unit, widget, integration (`test auth`); stub custom methods with `stub`
 - **Rename or remove** — without leftover routes or DI registrations
 - **Change stack later** — e.g. Riverpod → Bloc with `migrate` (custom regions ported)
 - **Keep custom code** — `// <stackchain:custom>` and `*_custom_test.dart`
+- **Heal drift** — `doctor --fix` syncs markers and refreshes the lockfile
 
 ## Mental model
 
