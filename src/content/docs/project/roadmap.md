@@ -5,7 +5,7 @@ description: What's planned next for stackchain.
 
 Coming next (shipped only when production-ready):
 
-1. **OpenAPI → feature** — generate models/repos/pages from a spec
+1. **OpenAPI → feature wiring** — attach `api` models/repos to a feature + DI/routes (schemas → files already shipped in 1.4.0)
 2. **Architecture lint rules** — enforce your chosen layout
 3. **Token refresh** — real refresh queue on 401
 4. **Offline module** — Drift/Isar + cache policy

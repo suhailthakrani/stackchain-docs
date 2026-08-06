@@ -47,4 +47,4 @@ Pages and state classes are rewritten for the new API. `// <stackchain:custom>` 
 
 ## Which version is this docs for?
 
-**stackchain 1.3.1**
+**stackchain 1.4.0**

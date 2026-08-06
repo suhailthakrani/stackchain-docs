@@ -31,6 +31,7 @@ No command ⇒ `init`.
 | `crud` | `<entity>` | Feature + list/form extras |
 | `test` | `<feature>` or `--all` | Unit / widget / integration tests |
 | `stub` | `<feature>` or `--all` | Placeholder tests for custom methods |
+| `api` | `<spec>` | OpenAPI → models + API repos |
 | `remove` | `<name>` | Delete a feature |
 | `rename` | `<from> <to>` | Rename a feature |
 | `sync` | | Re-wire routes & DI |
@@ -53,6 +54,10 @@ No command ⇒ `init`.
 ### stub flags
 
 `--all/-a` `--dry-run` `--name/-n`
+
+### api flags
+
+`--spec/-s` `--overwrite` `--dry-run` `--skip-analyze`
 
 ### doctor flags
 

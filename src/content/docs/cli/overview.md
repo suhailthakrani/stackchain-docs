@@ -16,6 +16,7 @@ No command? Same as `init`.
 | `init` | Scaffold the whole app |
 | `feature <name>` | Add a feature (files + routes + DI + tests) |
 | `crud <entity>` | Feature + list tile, form, and form tests |
+| `api <spec>` | Models + API repos from OpenAPI (re-run safe) |
 | `test <feature>` | Generate unit / widget / integration tests |
 | `stub <feature>` | Placeholder tests for `// <stackchain:custom>` methods |
 | `rename <from> <to>` | Rename a feature |
@@ -46,6 +47,6 @@ No command? Same as `init`.
 
 ```bash
 dart run stackchain help test
-dart run stackchain test auth --dry-run
+dart run stackchain api openapi.yaml
 dart run stackchain doctor --fix
 ```

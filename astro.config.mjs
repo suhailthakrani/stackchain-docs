@@ -79,6 +79,7 @@ export default defineConfig({
 						{ label: 'init', slug: 'cli/init' },
 						{ label: 'feature', slug: 'cli/feature' },
 						{ label: 'test', slug: 'cli/test' },
+						{ label: 'api', slug: 'cli/api' },
 						{ label: 'remove & rename', slug: 'cli/remove' },
 						{ label: 'sync', slug: 'cli/sync' },
 						{ label: 'upgrade', slug: 'cli/upgrade' },

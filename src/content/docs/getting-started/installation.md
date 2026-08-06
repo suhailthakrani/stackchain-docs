@@ -7,7 +7,7 @@ Add stackchain to **dev_dependencies** only.
 
 ## Requirements
 
-- Dart SDK `^3.5.0`
+- Dart SDK `>=3.0.0 <4.0.0`
 - An existing Flutter project (`flutter create my_app`)
 
 ## Install
@@ -21,7 +21,7 @@ Or in `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  stackchain: ^1.3.1
+  stackchain: ^1.4.0
 ```
 
 Then `flutter pub get`.
